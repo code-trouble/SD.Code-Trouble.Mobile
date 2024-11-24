@@ -24,6 +24,7 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import { api } from '../../service/api';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -61,7 +62,7 @@ function App(): React.JSX.Element {
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
-
+  
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar
