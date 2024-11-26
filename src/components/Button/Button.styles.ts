@@ -1,8 +1,8 @@
 // src/components/Button/Button.styles.ts
-import styled from 'styled-components/native';
+import styled from 'styled-components/native'
 
 interface ButtonProps {
-  primary?: boolean;
+	primary?: boolean
 }
 
 export const Button = styled.Button<ButtonProps>`
@@ -12,4 +12,4 @@ export const Button = styled.Button<ButtonProps>`
   padding: ${({ theme }) => theme.spacing.medium};
   border: none;
   border-radius: 4px;
-`;
+`
