@@ -27,6 +27,7 @@
 		"@react-native/typescript-config": "0.75.4",
 		"@types/react": "^18.2.6",
 		"@types/react-test-renderer": "^18.0.0",
+		"@types/styled-components-react-native": "^5.2.5",
 		"babel-jest": "^29.6.3",
 		"eslint": "^8.19.0",
 		"husky": "^9.1.7",
