@@ -1,4 +1,4 @@
-import { Hide, Logo, Show } from '@icons/index.ts'
+import { AddBookmark, Hide, Logo, Show } from '@icons/index.ts'
 import type React from 'react'
 import { useState } from 'react'
 import {
