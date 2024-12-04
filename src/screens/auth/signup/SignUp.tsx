@@ -14,21 +14,19 @@ import {
 	ContainerAccount,
 	ContainerButton,
 	ContainerDivider,
-	ContainerForgot,
 	ContainerForm,
 	ContainerIcon,
 	ContainerInput,
 	ContainerLogo,
 	Divider,
-	ForgotPasswordText,
 	Label,
 	TextAccount,
 	TextButton,
 	TextInput,
 	Title,
-} from './style'
+} from './style.ts'
 
-export const SignIn: React.FC = () => {
+export const SignUp: React.FC = () => {
 	const [showPassword, setShowPassword] = useState(false)
 
 	return (
@@ -43,7 +41,13 @@ export const SignIn: React.FC = () => {
 					</ContainerLogo>
 
 					<ContainerForm>
-						<Title>Login</Title>
+						<Title>Cadastro</Title>
+
+						<ContainerInput>
+							<Label>Nome Social</Label>
+
+							<TextInput placeholder="Digite seu nome" keyboardType="default" />
+						</ContainerInput>
 
 						<ContainerInput>
 							<Label>Email</Label>
@@ -71,15 +75,9 @@ export const SignIn: React.FC = () => {
 							</ContainerIcon>
 						</ContainerInput>
 
-						<ContainerForgot>
-							<TouchableOpacity>
-								<ForgotPasswordText>Esqueceu a senha?</ForgotPasswordText>
-							</TouchableOpacity>
-						</ContainerForgot>
-
 						<TouchableOpacity>
 							<ContainerButton>
-								<TextButton>Entrar</TextButton>
+								<TextButton>Criar conta</TextButton>
 							</ContainerButton>
 						</TouchableOpacity>
 
@@ -92,9 +90,9 @@ export const SignIn: React.FC = () => {
 						</ContainerDivider>
 
 						<ContainerAccount>
-							<Account>Ainda não possui conta?</Account>
+							<Account>Já possui conta?</Account>
 							<TouchableOpacity>
-								<TextAccount>Cadastrar</TextAccount>
+								<TextAccount>Entrar</TextAccount>
 							</TouchableOpacity>
 						</ContainerAccount>
 					</ContainerForm>
@@ -104,4 +102,4 @@ export const SignIn: React.FC = () => {
 	)
 }
 
-export default SignIn
+export default SignUp
