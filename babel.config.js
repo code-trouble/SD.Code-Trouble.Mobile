@@ -10,6 +10,7 @@ module.exports = {
 					'@theme': './src/types',
 					'@components': './src/components',
 					'@services': './src/types',
+					'@utils': './src/utils',
 				},
 			},
 		],
