@@ -1,10 +1,9 @@
-import { AddBookmark, Hide, Logo, Show } from '@icons/index.ts'
+import { Hide, Logo, Show } from '@icons/index.ts'
 import type React from 'react'
 import { useEffect, useState } from 'react'
 import {
 	Keyboard,
 	KeyboardAvoidingView,
-	Platform,
 	ScrollView,
 	TouchableOpacity,
 	TouchableWithoutFeedback,
@@ -31,7 +30,7 @@ import {
 import { theme } from '@theme/theme'
 import breakpoints from '@utils/dimensons'
 
-export const SignIn: React.FC = () => {
+export const SignUp: React.FC = () => {
 	const [showPassword, setShowPassword] = useState<boolean>(false)
 
 	const [large, setLarge] = useState<boolean>(false)
@@ -133,4 +132,4 @@ export const SignIn: React.FC = () => {
 	)
 }
 
-export default SignIn
+export default SignUp
