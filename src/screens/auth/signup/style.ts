@@ -1,27 +1,29 @@
 import { theme } from '@theme/theme.ts'
 import styled from 'styled-components/native'
 
-export const Container = styled.View`
-    flex: 1;
+export const Container = styled.View<{ $large: boolean }>`
+    /* flex: 1; */
+    height: ${(props) => (props.$large ? 850 : 525)}px;
     background-color: ${theme.colors.greyScale.offWhite};
 `
 
-export const ContainerLogo = styled.View`
+export const ContainerLogo = styled.View<{ $large: boolean }>`
     width: 100%;
     align-items: center;
     margin-top: 20px;
-    margin-bottom: 80px;
+    margin-bottom: ${(props) => (props.$large ? 80 : 25)}px;
 `
 
 export const ContainerForm = styled.View`
-    margin-left: 58px;
-    margin-right: 58px;
+    margin-left: 30px;
+    margin-right: 30px;
+    flex: 1;
 `
 
-export const Title = styled.Text`
+export const Title = styled.Text<{ $large: boolean }>`
     font-family: ${theme.fonts.montserrat.semiBold};
-    font-size: 56px;
-    margin-bottom: 46px;
+    font-size: ${(props) => (props.$large ? 56 : 32)}px;
+    margin-bottom: ${(props) => (props.$large ? 46 : 25)}px;
     color: #000;
     align-self: center;
 `
@@ -30,46 +32,46 @@ export const ContainerInput = styled.View`
     margin-bottom: 14px;
 `
 
-export const ContainerIcon = styled.View`
+export const ContainerIcon = styled.View<{ $large: boolean }>`
     align-self: flex-end;
-    margin-top: -33px;
+    margin-top: ${(props) => (props.$large ? -33 : -26)}px;
     margin-right: 5px;
 `
 
-export const Label = styled.Text`
+export const Label = styled.Text<{ $large: boolean }>`
     font-family: ${theme.fonts.hind.regular};
     color: ${theme.colors.greyScale.eerieBlack};
-    font-size: 16px;
+    font-size: ${(props) => (props.$large ? 16 : 14)}px;
     margin-bottom: 6px;
 `
 
-export const TextInput = styled.TextInput`
+export const TextInput = styled.TextInput<{ $large: boolean }>`
     border-radius: 5px;
     background-color: ${theme.colors.greyScale.offWhite};
     width: 100%;
-    height: 44px;
-    border-color: #000;
+    height: ${(props) => (props.$large ? 44 : 35)}px;
+    border-color: ${theme.colors.greyScale.frenchGray};
     border-width: 1px;
-    font-family: ${theme.fonts.hind.bold};
-    font-size: 14px;
-    padding: 10px;
+    font-family: ${theme.fonts.hind.medium};
+    font-size: ${(props) => (props.$large ? 16 : 12)}px;
+    font-weight: 700;
+    padding-left: 10px;
 `
 
-export const ContainerButton = styled.View`
-    background-color: ${theme.colors.accent};
+export const ContainerButton = styled.View<{ $large: boolean }>`
+    background-color: ${theme.colors.primary};
     width: 100%;
-    height: 38px;
+    height: ${(props) => (props.$large ? 38 : 30)}px;
     border-radius: 20px;
     justify-content: center;
     align-items: center;
-    margin-top: 202px;
     margin-bottom: 25px;
 `
 
-export const TextButton = styled.Text`
+export const TextButton = styled.Text<{ $large: boolean }>`
     color: ${theme.colors.greyScale.offWhite};
     font-family: ${theme.fonts.hind.medium};
-    font-size: 16px;
+    font-size: ${(props) => (props.$large ? 16 : 14)}px;
 `
 
 export const ContainerDivider = styled.View`
@@ -79,7 +81,7 @@ export const ContainerDivider = styled.View`
 `
 
 export const Divider = styled.View`
-    width: 130px;
+    width: 35%;
     height: 0px;
     border-width: 0.9px;
     background-color: ${theme.colors.greyScale.eerieBlack};
@@ -89,9 +91,9 @@ export const Divider = styled.View`
     margin-top: 10px;
 `
 
-export const Account = styled.Text`
+export const Account = styled.Text<{ $large: boolean }>`
     font-family: ${theme.fonts.hind.medium};
-    font-size: 16px;
+    font-size: ${(props) => (props.$large ? 16 : 13)}px;
 `
 
 export const ContainerAccount = styled.View`
@@ -101,8 +103,14 @@ export const ContainerAccount = styled.View`
     gap: 5px;
 `
 
-export const TextAccount = styled.Text`
+export const TextAccount = styled.Text<{ $large: boolean }>`
     color: ${theme.colors.accent};
     font-family: ${theme.fonts.hind.medium};
-    font-size: 16px;
+    font-size: ${(props) => (props.$large ? 16 : 13)}px;
+`
+
+export const ContainerBottom = styled.View<{ $large: boolean }>`
+    flex: 1;
+    justify-content: flex-end;
+    margin-bottom: ${(props) => (props.$large ? 30 : 20)}px;
 `

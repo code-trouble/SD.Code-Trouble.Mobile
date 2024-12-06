@@ -1,10 +1,11 @@
-import { Hide, Logo, Show } from '@icons/index.ts'
+import { AddBookmark, Hide, Logo, Show } from '@icons/index.ts'
 import type React from 'react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
 	Keyboard,
 	KeyboardAvoidingView,
 	Platform,
+	ScrollView,
 	TouchableOpacity,
 	TouchableWithoutFeedback,
 } from 'react-native'
@@ -12,6 +13,7 @@ import {
 	Account,
 	Container,
 	ContainerAccount,
+	ContainerBottom,
 	ContainerButton,
 	ContainerDivider,
 	ContainerForm,
@@ -24,82 +26,111 @@ import {
 	TextButton,
 	TextInput,
 	Title,
-} from './style.ts'
+} from './style'
 
-export const SignUp: React.FC = () => {
-	const [showPassword, setShowPassword] = useState(false)
+import { theme } from '@theme/theme'
+import breakpoints from '@utils/dimensons'
+
+export const SignIn: React.FC = () => {
+	const [showPassword, setShowPassword] = useState<boolean>(false)
+
+	const [large, setLarge] = useState<boolean>(false)
+	const [marginTopBehavior, setMarginTopBehavior] = useState<boolean>(false)
+
+	useEffect(() => {
+		if (breakpoints() > 568) setLarge(true)
+	}, [])
 
 	return (
-		<TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-			<KeyboardAvoidingView
-				behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-				style={{ flex: 1 }}
-			>
-				<Container>
-					<ContainerLogo>
-						<Logo width={149} />
-					</ContainerLogo>
+		<KeyboardAvoidingView style={{ flex: 1 }}>
+			<ScrollView style={{ flexGrow: 1 }}>
+				<TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+					<Container $large={large}>
+						<ContainerLogo $large={large}>
+							<Logo width={large ? 149 : 96} />
+						</ContainerLogo>
 
-					<ContainerForm>
-						<Title>Cadastro</Title>
+						<ContainerForm>
+							<Title $large={large}>Cadastro</Title>
 
-						<ContainerInput>
-							<Label>Nome Social</Label>
+							<ContainerInput>
+								<Label $large={large}>Nome Social</Label>
 
-							<TextInput placeholder="Digite seu nome" keyboardType="default" />
-						</ContainerInput>
+								<TextInput
+									placeholder="Digite seu nome"
+									keyboardType="default"
+									$large={large}
+								/>
+							</ContainerInput>
 
-						<ContainerInput>
-							<Label>Email</Label>
+							<ContainerInput>
+								<Label $large={large}>Email</Label>
 
-							<TextInput
-								placeholder="Digite seu email"
-								keyboardType="default"
-							/>
-						</ContainerInput>
+								<TextInput
+									placeholder="Digite seu email"
+									keyboardType="default"
+									$large={large}
+								/>
+							</ContainerInput>
 
-						<ContainerInput>
-							<Label>Senha</Label>
+							<ContainerInput>
+								<Label $large={large}>Senha</Label>
 
-							<TextInput
-								placeholder="Digite sua senha"
-								secureTextEntry={showPassword}
-							/>
+								<TextInput
+									placeholder="Digite sua senha"
+									secureTextEntry={!showPassword}
+									$large={large}
+								/>
 
-							<ContainerIcon>
-								<TouchableOpacity
-									onPress={() => setShowPassword(!showPassword)}
-								>
-									{showPassword ? <Hide height={23} /> : <Show height={23} />}
+								<ContainerIcon $large={large}>
+									<TouchableOpacity
+										onPress={() => setShowPassword(!showPassword)}
+									>
+										{showPassword ? (
+											<Hide
+												height={large ? 25 : 18}
+												width={large ? 28 : 18}
+												color={theme.colors.greyScale.frenchGray}
+											/>
+										) : (
+											<Show
+												height={large ? 25 : 18}
+												width={large ? 28 : 18}
+												color={theme.colors.greyScale.frenchGray}
+											/>
+										)}
+									</TouchableOpacity>
+								</ContainerIcon>
+							</ContainerInput>
+
+							<ContainerBottom $large={large}>
+								<TouchableOpacity>
+									<ContainerButton $large={large}>
+										<TextButton $large={large}>Criar conta</TextButton>
+									</ContainerButton>
 								</TouchableOpacity>
-							</ContainerIcon>
-						</ContainerInput>
 
-						<TouchableOpacity>
-							<ContainerButton>
-								<TextButton>Criar conta</TextButton>
-							</ContainerButton>
-						</TouchableOpacity>
+								<ContainerDivider>
+									<Divider />
 
-						<ContainerDivider>
-							<Divider />
+									<Label $large={large}>OU</Label>
 
-							<Label>OU</Label>
+									<Divider />
+								</ContainerDivider>
 
-							<Divider />
-						</ContainerDivider>
-
-						<ContainerAccount>
-							<Account>Já possui conta?</Account>
-							<TouchableOpacity>
-								<TextAccount>Entrar</TextAccount>
-							</TouchableOpacity>
-						</ContainerAccount>
-					</ContainerForm>
-				</Container>
-			</KeyboardAvoidingView>
-		</TouchableWithoutFeedback>
+								<ContainerAccount>
+									<Account $large={large}>Já possui uma conta?</Account>
+									<TouchableOpacity>
+										<TextAccount $large={large}>Faça login aqui.</TextAccount>
+									</TouchableOpacity>
+								</ContainerAccount>
+							</ContainerBottom>
+						</ContainerForm>
+					</Container>
+				</TouchableWithoutFeedback>
+			</ScrollView>
+		</KeyboardAvoidingView>
 	)
 }
 
-export default SignUp
+export default SignIn
