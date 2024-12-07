@@ -1,99 +1,70 @@
-import { AddBookmark, Hide, Logo, Show } from '@icons/index.ts'
 import type React from 'react'
 import { useEffect, useState } from 'react'
 import {
 	Keyboard,
 	KeyboardAvoidingView,
-	Platform,
 	ScrollView,
 	TouchableOpacity,
 	TouchableWithoutFeedback,
 } from 'react-native'
 import {
 	Account,
-	Container,
 	ContainerAccount,
 	ContainerBottom,
-	ContainerButton,
 	ContainerDivider,
 	ContainerForgot,
-	ContainerForm,
-	ContainerIcon,
-	ContainerInput,
-	ContainerLogo,
 	Divider,
 	ForgotPasswordText,
 	Label,
 	TextAccount,
-	TextButton,
-	TextInput,
-	Title,
 } from './style'
 
-import { theme } from '@theme/theme'
+import ComponentButton from '@components/Button/Button'
+import ComponentContainer from '@components/Container/Container'
+import ConmponentForm from '@components/ContainerForm/ContainerForm'
+import ComponentContainerInput from '@components/Input/Input'
+import ComponentLogo from '@components/Logo/Logo'
+import ComponentTitle from '@components/Title/Title'
 import breakpoints from '@utils/dimensons'
 
 export const SignIn: React.FC = () => {
-	const [showPassword, setShowPassword] = useState<boolean>(false)
-
 	const [large, setLarge] = useState<boolean>(false)
-	const [marginTopBehavior, setMarginTopBehavior] = useState<boolean>(false)
+	const [inputValue, setInputValue] = useState<string>('')
 
 	useEffect(() => {
 		if (breakpoints() > 568) setLarge(true)
 	}, [])
 
+	const handleInputChange = (value: string) => {
+		setInputValue(value)
+	}
+
 	return (
 		<KeyboardAvoidingView style={{ flex: 1 }}>
 			<ScrollView style={{ flexGrow: 1 }}>
 				<TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-					<Container $large={large}>
-						<ContainerLogo $large={large}>
-							<Logo width={large ? 149 : 96} />
-						</ContainerLogo>
+					<ComponentContainer large={large}>
+						<ComponentLogo />
 
-						<ContainerForm>
-							<Title $large={large}>Login</Title>
+						<ConmponentForm>
+							<ComponentTitle large={large}>Login</ComponentTitle>
 
-							<ContainerInput>
-								<Label $large={large}>Email</Label>
+							<ComponentContainerInput
+								large={large}
+								password={false}
+								onInputChange={handleInputChange}
+								valueLabel="Email"
+								placeholder="Digite seu email"
+							/>
 
-								<TextInput
-									placeholder="Digite seu email"
-									keyboardType="default"
-									$large={large}
-								/>
-							</ContainerInput>
-
-							<ContainerInput>
-								<Label $large={large}>Senha</Label>
-
-								<TextInput
-									placeholder="Digite sua senha"
-									secureTextEntry={!showPassword}
-									$large={large}
-								/>
-
-								<ContainerIcon $large={large}>
-									<TouchableOpacity
-										onPress={() => setShowPassword(!showPassword)}
-									>
-										{showPassword ? (
-											<Hide
-												height={large ? 25 : 18}
-												width={large ? 28 : 18}
-												color={theme.colors.greyScale.frenchGray}
-											/>
-										) : (
-											<Show
-												height={large ? 25 : 18}
-												width={large ? 28 : 18}
-												color={theme.colors.greyScale.frenchGray}
-											/>
-										)}
-									</TouchableOpacity>
-								</ContainerIcon>
-							</ContainerInput>
+							<ComponentContainerInput
+								large={large}
+								password={true}
+								onInputChange={handleInputChange}
+								valueLabel="Senha"
+								placeholder="Digite sua senha"
+								lastInput={true}
+							/>
 
 							<ContainerForgot>
 								<TouchableOpacity>
@@ -104,16 +75,12 @@ export const SignIn: React.FC = () => {
 							</ContainerForgot>
 
 							<ContainerBottom $large={large}>
-								<TouchableOpacity>
-									<ContainerButton $large={large}>
-										<TextButton $large={large}>Entrar</TextButton>
-									</ContainerButton>
-								</TouchableOpacity>
+								<ComponentButton large={large} text="Entrar" />
 
 								<ContainerDivider>
 									<Divider />
 
-									<Label $large={large}>OU</Label>
+									<Label $large={large}>ou</Label>
 
 									<Divider />
 								</ContainerDivider>
@@ -125,8 +92,8 @@ export const SignIn: React.FC = () => {
 									</TouchableOpacity>
 								</ContainerAccount>
 							</ContainerBottom>
-						</ContainerForm>
-					</Container>
+						</ConmponentForm>
+					</ComponentContainer>
 				</TouchableWithoutFeedback>
 			</ScrollView>
 		</KeyboardAvoidingView>

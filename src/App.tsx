@@ -20,8 +20,8 @@ function App(): React.JSX.Element {
 			<SafeAreaView />
 			<StatusBar />
 			{/* <SignUp /> */}
-			{/* <SignIn /> */}
-			<ForgotPassword />
+			<SignIn />
+			{/* <ForgotPassword /> */}
 		</ThemeProvider>
 	)
 }
