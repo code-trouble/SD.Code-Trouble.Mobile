@@ -3,6 +3,7 @@ import styled from 'styled-components/native'
 
 export const ContainerInput = styled.View<{ $lastInput?: boolean }>`
     margin-bottom: ${(props) => (props.$lastInput ? 0 : 25)}px;
+    margin-bottom: 14px;
 `
 
 export const ContainerIcon = styled.View<{ $large: boolean }>`

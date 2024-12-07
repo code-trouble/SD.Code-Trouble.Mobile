@@ -4,5 +4,5 @@ export const ContainerLogo = styled.View<{ $large: boolean }>`
     width: 100%;
     align-items: center;
     margin-top: 20px;
-    margin-bottom: ${(props) => (props.$large ? 80 : 54)}px;
+    margin-bottom: ${(props) => (props.$large ? 80 : 25)}px;
 `
