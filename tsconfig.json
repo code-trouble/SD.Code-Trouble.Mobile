@@ -17,6 +17,9 @@
 			],
 			"@utils/*": [
 				"./src/utils/*"
+			],
+			"@screens/*": [
+				"./src/screens/*"
 			]
 		}
 	}
