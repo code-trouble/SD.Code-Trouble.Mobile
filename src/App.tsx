@@ -5,11 +5,13 @@
  * @format
  */
 
+import { NavigationContainer } from '@react-navigation/native'
 import Auth, { AuthType } from '@screens/auth'
 import Boarding from '@screens/boarding/Boarding'
 import type React from 'react'
 import { SafeAreaView, StatusBar } from 'react-native'
 import { ThemeProvider } from 'styled-components/native'
+import PostRegisterRouter from './router/postRegister/postRegister.router'
 import { theme } from './types/theme'
 
 function App(): React.JSX.Element {
@@ -18,7 +20,11 @@ function App(): React.JSX.Element {
 			<SafeAreaView />
 			<StatusBar />
 			{/* <Auth type={AuthType.RecoveryPassword} /> */}
-			<Boarding />
+			{/* <Boarding /> */}
+			{/* <Username /> */}
+			<NavigationContainer>
+				<PostRegisterRouter />
+			</NavigationContainer>
 		</ThemeProvider>
 	)
 }
