@@ -43,8 +43,8 @@ export const Horzintal = styled.View`
     margin-bottom: 20px;
 `
 
-export const Title = styled.Text`
+export const Title = styled.Text<{ $large: boolean }>`
     color: ${theme.colors.greyScale.eerieBlack};
-    font-size: 24px;
+    font-size: ${(props) => (props.$large ? 24 : 16)}px;
     font-family: ${theme.fonts.montserrat.semiBold};
 `

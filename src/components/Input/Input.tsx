@@ -6,7 +6,7 @@ import { ContainerIcon, ContainerInput, Label, TextInput } from './style'
 
 interface ITextInput {
 	large: boolean
-	valueLabel: string
+	valueLabel: string | React.ReactNode
 	placeholder: string
 	password: boolean
 	onInputChange: (value: string) => void

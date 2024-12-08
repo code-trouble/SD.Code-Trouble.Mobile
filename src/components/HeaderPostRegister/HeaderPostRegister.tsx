@@ -47,10 +47,10 @@ export const HeaderPostRegister: React.FC<IHeaderPostRegister> = ({
 						<TouchableOpacity onPress={() => navigation.goBack()}>
 							<LeftArrow />
 						</TouchableOpacity>
-						<Title>{title}</Title>
+						<Title $large={large}>{title}</Title>
 					</>
 				) : (
-					<Title>{title}</Title>
+					<Title $large={large}>{title}</Title>
 				)}
 			</Horzintal>
 		</Container>
