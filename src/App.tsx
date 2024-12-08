@@ -18,8 +18,8 @@ function App(): React.JSX.Element {
 		<ThemeProvider theme={theme}>
 			<SafeAreaView />
 			<StatusBar />
-			{/* <SignUp /> */}
-			<SignIn />
+			<SignUp />
+			{/* <SignIn /> */}
 		</ThemeProvider>
 	)
 }
