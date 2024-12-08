@@ -10,7 +10,7 @@ export const PostRegisterRouter: React.FC = () => {
 	return (
 		<Stack.Navigator>
 			<Stack.Screen
-				name="Insira seu nome"
+				name="Insira seu username"
 				component={Username}
 				options={{
 					header: ({ options, route }) => {
