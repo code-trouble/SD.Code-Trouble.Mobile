@@ -4,20 +4,9 @@ import {
 	Keyboard,
 	KeyboardAvoidingView,
 	ScrollView,
-	TouchableOpacity,
 	TouchableWithoutFeedback,
 } from 'react-native'
-import {
-	Account,
-	ContainerAccount,
-	ContainerBottom,
-	ContainerDivider,
-	ContainerForgot,
-	Divider,
-	ForgotPasswordText,
-	Label,
-	TextAccount,
-} from './style'
+import { ContainerBottom } from './styles'
 
 import ComponentButton from '@components/Button/Button'
 import ComponentContainer from '@components/Container/Container'
@@ -27,9 +16,10 @@ import ComponentLogo from '@components/Logo/Logo'
 import ComponentTitle from '@components/Title/Title'
 import breakpoints from '@utils/dimensons'
 
-export const SignIn: React.FC = () => {
-	const [large, setLarge] = useState<boolean>(false)
+export const RecoveryPassword: React.FC = () => {
 	const [inputValue, setInputValue] = useState<string>('')
+
+	const [large, setLarge] = useState<boolean>(false)
 
 	useEffect(() => {
 		if (breakpoints() > 568) setLarge(true)
@@ -47,50 +37,34 @@ export const SignIn: React.FC = () => {
 						<ComponentLogo />
 
 						<ConmponentForm>
-							<ComponentTitle large={large}>Login</ComponentTitle>
+							<ComponentTitle large={large}>Recuperar Senha</ComponentTitle>
 
 							<ComponentContainerInput
 								large={large}
 								password={false}
-								onInputChange={handleInputChange}
-								valueLabel="Email"
 								placeholder="Digite seu email"
+								valueLabel="Email"
+								onInputChange={handleInputChange}
 							/>
 
 							<ComponentContainerInput
 								large={large}
 								password={true}
-								onInputChange={handleInputChange}
-								valueLabel="Senha"
 								placeholder="Digite sua senha"
-								lastInput={true}
+								valueLabel="Nova senha"
+								onInputChange={handleInputChange}
 							/>
 
-							<ContainerForgot>
-								<TouchableOpacity>
-									<ForgotPasswordText $large={large}>
-										Esqueceu a senha?
-									</ForgotPasswordText>
-								</TouchableOpacity>
-							</ContainerForgot>
+							<ComponentContainerInput
+								large={large}
+								password={true}
+								placeholder="********"
+								valueLabel="Confirme sua senha"
+								onInputChange={handleInputChange}
+							/>
 
 							<ContainerBottom $large={large}>
-								<ComponentButton large={large} text="Entrar" />
-
-								<ContainerDivider>
-									<Divider />
-
-									<Label $large={large}>ou</Label>
-
-									<Divider />
-								</ContainerDivider>
-
-								<ContainerAccount>
-									<Account $large={large}>Ainda não tem conta?</Account>
-									<TouchableOpacity>
-										<TextAccount $large={large}>Cadastrar-se aqui</TextAccount>
-									</TouchableOpacity>
-								</ContainerAccount>
+								<ComponentButton large={large} text="Confirmar" />
 							</ContainerBottom>
 						</ConmponentForm>
 					</ComponentContainer>
@@ -100,4 +74,4 @@ export const SignIn: React.FC = () => {
 	)
 }
 
-export default SignIn
+export default RecoveryPassword

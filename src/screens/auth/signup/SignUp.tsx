@@ -1,4 +1,3 @@
-import { Hide, Logo, Show } from '@icons/index.ts'
 import type React from 'react'
 import { useEffect, useState } from 'react'
 import {
@@ -10,104 +9,71 @@ import {
 } from 'react-native'
 import {
 	Account,
-	Container,
 	ContainerAccount,
 	ContainerBottom,
-	ContainerButton,
 	ContainerDivider,
-	ContainerForm,
-	ContainerIcon,
-	ContainerInput,
-	ContainerLogo,
 	Divider,
 	Label,
 	TextAccount,
-	TextButton,
-	TextInput,
-	Title,
 } from './style'
 
-import { theme } from '@theme/theme'
+import ComponentButton from '@components/Button/Button'
+import ComponentContainer from '@components/Container/Container'
+import ConmponentForm from '@components/ContainerForm/ContainerForm'
+import ComponentContainerInput from '@components/Input/Input'
+import ComponentLogo from '@components/Logo/Logo'
+import ComponentTitle from '@components/Title/Title'
 import breakpoints from '@utils/dimensons'
 
 export const SignUp: React.FC = () => {
-	const [showPassword, setShowPassword] = useState<boolean>(false)
+	const [inputValue, setInputValue] = useState<string>('')
 
 	const [large, setLarge] = useState<boolean>(false)
-	const [marginTopBehavior, setMarginTopBehavior] = useState<boolean>(false)
 
 	useEffect(() => {
 		if (breakpoints() > 568) setLarge(true)
 	}, [])
 
+	const handleInputChange = (value: string) => {
+		setInputValue(value)
+	}
+
 	return (
 		<KeyboardAvoidingView style={{ flex: 1 }}>
 			<ScrollView style={{ flexGrow: 1 }}>
 				<TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-					<Container $large={large}>
-						<ContainerLogo $large={large}>
-							<Logo width={large ? 149 : 96} />
-						</ContainerLogo>
+					<ComponentContainer large={large}>
+						<ComponentLogo />
 
-						<ContainerForm>
-							<Title $large={large}>Cadastro</Title>
+						<ConmponentForm>
+							<ComponentTitle large={large}>Cadastro</ComponentTitle>
 
-							<ContainerInput>
-								<Label $large={large}>Nome Social</Label>
+							<ComponentContainerInput
+								large={large}
+								valueLabel="Nome Social"
+								password={false}
+								placeholder="Digite seu nome"
+								onInputChange={handleInputChange}
+							/>
 
-								<TextInput
-									placeholder="Digite seu nome"
-									keyboardType="default"
-									$large={large}
-								/>
-							</ContainerInput>
+							<ComponentContainerInput
+								large={large}
+								valueLabel="Email"
+								password={false}
+								placeholder="Digite seu email"
+								onInputChange={handleInputChange}
+							/>
 
-							<ContainerInput>
-								<Label $large={large}>Email</Label>
-
-								<TextInput
-									placeholder="Digite seu email"
-									keyboardType="default"
-									$large={large}
-								/>
-							</ContainerInput>
-
-							<ContainerInput>
-								<Label $large={large}>Senha</Label>
-
-								<TextInput
-									placeholder="Digite sua senha"
-									secureTextEntry={!showPassword}
-									$large={large}
-								/>
-
-								<ContainerIcon $large={large}>
-									<TouchableOpacity
-										onPress={() => setShowPassword(!showPassword)}
-									>
-										{showPassword ? (
-											<Hide
-												height={large ? 25 : 18}
-												width={large ? 28 : 18}
-												color={theme.colors.greyScale.frenchGray}
-											/>
-										) : (
-											<Show
-												height={large ? 25 : 18}
-												width={large ? 28 : 18}
-												color={theme.colors.greyScale.frenchGray}
-											/>
-										)}
-									</TouchableOpacity>
-								</ContainerIcon>
-							</ContainerInput>
+							<ComponentContainerInput
+								large={large}
+								valueLabel="Senha"
+								password={true}
+								placeholder="******"
+								onInputChange={handleInputChange}
+							/>
 
 							<ContainerBottom $large={large}>
-								<TouchableOpacity>
-									<ContainerButton $large={large}>
-										<TextButton $large={large}>Criar conta</TextButton>
-									</ContainerButton>
-								</TouchableOpacity>
+								<ComponentButton large={large} text="Criar Conta" />
 
 								<ContainerDivider>
 									<Divider />
@@ -124,8 +90,8 @@ export const SignUp: React.FC = () => {
 									</TouchableOpacity>
 								</ContainerAccount>
 							</ContainerBottom>
-						</ContainerForm>
-					</Container>
+						</ConmponentForm>
+					</ComponentContainer>
 				</TouchableWithoutFeedback>
 			</ScrollView>
 		</KeyboardAvoidingView>
