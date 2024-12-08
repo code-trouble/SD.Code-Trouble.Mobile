@@ -8,6 +8,7 @@
 import type React from 'react'
 import { SafeAreaView, StatusBar } from 'react-native'
 import { ThemeProvider } from 'styled-components/native'
+import ForgotPassword from './screens/auth/forgot-password/ForgotPassword'
 import SignIn from './screens/auth/signin/SignIn'
 import SignUp from './screens/auth/signup/SignUp'
 import Home from './screens/home'
@@ -18,8 +19,9 @@ function App(): React.JSX.Element {
 		<ThemeProvider theme={theme}>
 			<SafeAreaView />
 			<StatusBar />
-			<SignUp />
+			{/* <SignUp /> */}
 			{/* <SignIn /> */}
+			<ForgotPassword />
 		</ThemeProvider>
 	)
 }
