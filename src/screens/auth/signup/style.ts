@@ -1,5 +1,5 @@
+import { theme } from '@theme/theme.ts'
 import styled from 'styled-components/native'
-import { theme } from '../../../types/theme'
 
 export const Container = styled.View`
     flex: 1;
@@ -19,7 +19,7 @@ export const ContainerForm = styled.View`
 `
 
 export const Title = styled.Text`
-    font-family: Montserrat-SemiBold;
+    font-family: ${theme.fonts.montserrat.semiBold};
     font-size: 56px;
     margin-bottom: 46px;
     color: #000;
@@ -37,7 +37,7 @@ export const ContainerIcon = styled.View`
 `
 
 export const Label = styled.Text`
-    font-family: Hind-Regular;
+    font-family: ${theme.fonts.hind.regular};
     color: ${theme.colors.greyScale.eerieBlack};
     font-size: 16px;
     margin-bottom: 6px;
@@ -50,7 +50,7 @@ export const TextInput = styled.TextInput`
     height: 44px;
     border-color: #000;
     border-width: 1px;
-    font-family: Hind-Bold;
+    font-family: ${theme.fonts.hind.bold};
     font-size: 14px;
     padding: 10px;
 `
@@ -68,7 +68,7 @@ export const ContainerButton = styled.View`
 
 export const TextButton = styled.Text`
     color: ${theme.colors.greyScale.offWhite};
-    font-family: Hind-Medium;
+    font-family: ${theme.fonts.hind.medium};
     font-size: 16px;
 `
 
@@ -90,7 +90,7 @@ export const Divider = styled.View`
 `
 
 export const Account = styled.Text`
-    font-family: Hind-Medium;
+    font-family: ${theme.fonts.hind.medium};
     font-size: 16px;
 `
 
@@ -103,6 +103,6 @@ export const ContainerAccount = styled.View`
 
 export const TextAccount = styled.Text`
     color: ${theme.colors.accent};
-    font-family: Hind-Medium;
+    font-family: ${theme.fonts.hind.medium};
     font-size: 16px;
 `

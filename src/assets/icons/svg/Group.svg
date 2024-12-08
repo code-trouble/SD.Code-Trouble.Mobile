@@ -1,9 +1,9 @@
 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M7 8.5H5V10.5H7V8.5Z" fill="#15181B"/>
-<path d="M11 8.5H9V10.5H11V8.5Z" fill="#15181B"/>
-<path d="M15 8.5H13V10.5H15V8.5Z" fill="#15181B"/>
-<path d="M7 12.5H5V14.5H7V12.5Z" fill="#15181B"/>
-<path d="M11 12.5H9V14.5H11V12.5Z" fill="#15181B"/>
-<path d="M15 12.5H13V14.5H15V12.5Z" fill="#15181B"/>
-<path d="M19 2.5V1.5H15V0.5H13V1.5H7V0.5H5V1.5H1V2.5H0V18.5H1V19.5H19V18.5H20V2.5H19ZM18 16.5H17V17.5H3V16.5H2V4.5H3V3.5H5V5.5H7V3.5H13V5.5H15V4.5V3.5H17V4.5H18V16.5Z" fill="#15181B"/>
+<path d="M7 8.5H5V10.5H7V8.5Z" fill="currentColor"/>
+<path d="M11 8.5H9V10.5H11V8.5Z" fill="currentColor"/>
+<path d="M15 8.5H13V10.5H15V8.5Z" fill="currentColor"/>
+<path d="M7 12.5H5V14.5H7V12.5Z" fill="currentColor"/>
+<path d="M11 12.5H9V14.5H11V12.5Z" fill="currentColor"/>
+<path d="M15 12.5H13V14.5H15V12.5Z" fill="currentColor"/>
+<path d="M19 2.5V1.5H15V0.5H13V1.5H7V0.5H5V1.5H1V2.5H0V18.5H1V19.5H19V18.5H20V2.5H19ZM18 16.5H17V17.5H3V16.5H2V4.5H3V3.5H5V5.5H7V3.5H13V5.5H15V4.5V3.5H17V4.5H18V16.5Z" fill="currentColor"/>
 </svg>
