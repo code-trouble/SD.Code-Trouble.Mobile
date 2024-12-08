@@ -6,7 +6,7 @@ interface IButton {
 	onPress?: () => void
 }
 
-export const ComponentButton: React.FC<IButton> = ({
+export const ComponentButtonSkip: React.FC<IButton> = ({
 	text,
 	large,
 	onPress,
@@ -20,4 +20,4 @@ export const ComponentButton: React.FC<IButton> = ({
 	)
 }
 
-export default ComponentButton
+export default ComponentButtonSkip
