@@ -2,6 +2,7 @@ import ComponentButton from '@components/Button/Button'
 import ComponentButtonSkip from '@components/ButtonSkip/ButtonSkip'
 import Check from '@components/Check/Check'
 import ComponentContainer from '@components/Container/Container'
+import { useNavigation } from '@react-navigation/native'
 import breakpoints from '@utils/dimensons'
 import type React from 'react'
 import { useEffect, useState } from 'react'
@@ -13,6 +14,12 @@ export const Interests: React.FC = () => {
 	useEffect(() => {
 		if (breakpoints() > 568) setLarge(true)
 	}, [])
+
+	const navigation = useNavigation()
+
+	const navigate = () => {
+		navigation.navigate('Detalhes do Perfil' as never)
+	}
 
 	return (
 		<ComponentContainer large={large}>
@@ -49,7 +56,7 @@ export const Interests: React.FC = () => {
 			</Container>
 
 			<ContainerBottom $large={large}>
-				<ComponentButton large={large} text="Próximo" />
+				<ComponentButton large={large} text="Próximo" onPress={navigate} />
 				<ComponentButtonSkip large={large} text="Pular" />
 			</ContainerBottom>
 		</ComponentContainer>

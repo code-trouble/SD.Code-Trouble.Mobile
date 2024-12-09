@@ -1,6 +1,7 @@
 import HeaderPostRegister from '@components/HeaderPostRegister/HeaderPostRegister'
 import { getHeaderTitle } from '@react-navigation/elements'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import DetailsProfile from '@screens/postRegister/detailsProfile/DetailsProfile'
 import Interests from '@screens/postRegister/interests/Interests'
 import Username from '@screens/postRegister/username/Username'
 import type React from 'react'
@@ -30,6 +31,18 @@ export const PostRegisterRouter: React.FC = () => {
 						const title = getHeaderTitle(options, route.name)
 						return (
 							<HeaderPostRegister title={title} back={true} percentage={35} />
+						)
+					},
+				}}
+			/>
+			<Stack.Screen
+				name="Detalhes do Perfil"
+				component={DetailsProfile}
+				options={{
+					header: ({ options, route }) => {
+						const title = getHeaderTitle(options, route.name)
+						return (
+							<HeaderPostRegister title={title} back={true} percentage={50} />
 						)
 					},
 				}}
