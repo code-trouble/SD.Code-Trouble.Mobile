@@ -1,8 +1,8 @@
 import ComponentButton from '@components/Button/Button'
-import { ContainerButton } from '@components/Button/style'
 import ComponentContainer from '@components/Container/Container'
 import ConmponentForm from '@components/ContainerForm/ContainerForm'
 import ComponentContainerInput from '@components/Input/Input'
+import { useNavigation } from '@react-navigation/native'
 import breakpoints from '@utils/dimensons'
 import { useEffect, useState } from 'react'
 import { Keyboard } from 'react-native'
@@ -12,6 +12,7 @@ import { Container, Space, Warning } from './style'
 export const Username: React.FC = () => {
 	const [large, setLarge] = useState<boolean>(false)
 	const [inputValue, setInputValue] = useState<string>('')
+	const navigation = useNavigation()
 
 	useEffect(() => {
 		if (breakpoints() > 568) setLarge(true)
@@ -19,6 +20,10 @@ export const Username: React.FC = () => {
 
 	const handleInputChange = (value: string) => {
 		setInputValue(value)
+	}
+
+	const navigate = () => {
+		navigation.navigate('Seus Interesses' as never)
 	}
 
 	return (
@@ -40,9 +45,7 @@ export const Username: React.FC = () => {
 					</ConmponentForm>
 
 					<Container $large={large}>
-						<ContainerButton>
-							<ComponentButton text="Próximo" large={large} />
-						</ContainerButton>
+						<ComponentButton text="Próximo" large={large} onPress={navigate} />
 					</Container>
 				</Space>
 			</TouchableWithoutFeedback>

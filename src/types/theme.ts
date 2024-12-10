@@ -10,6 +10,7 @@ export const theme = {
 			dimGray: '#808080',
 			eerieBlack: '#15181B',
 			strokeWhite: '#C7C7C7',
+			onyx: '#323538',
 		},
 		semanticColors: {
 			background_1: '#F7F7F7',

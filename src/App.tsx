@@ -19,7 +19,7 @@ function App(): React.JSX.Element {
 		<ThemeProvider theme={theme}>
 			<SafeAreaView />
 			<StatusBar />
-			{/* <Auth type={AuthType.RecoveryPassword} /> */}
+			{/* <Auth type={AuthType.ForgotPassword} /> */}
 			{/* <Boarding /> */}
 			{/* <Username /> */}
 			<NavigationContainer>
