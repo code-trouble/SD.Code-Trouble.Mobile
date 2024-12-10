@@ -25,7 +25,7 @@ export const SocialMedia: React.FC = () => {
 	const navigation = useNavigation()
 
 	const navigate = () => {
-		navigation.navigate('' as never)
+		navigation.navigate('Preview do Perfil' as never)
 	}
 
 	if (!large) {

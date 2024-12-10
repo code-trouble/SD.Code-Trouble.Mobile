@@ -6,9 +6,13 @@ import { useEffect, useState } from 'react'
 import { View } from 'react-native'
 import RNPickerSelect from 'react-native-picker-select'
 import { Colors } from 'react-native/Libraries/NewAppScreen'
-import { Label } from './style'
+import { Container, Label } from './style'
 
-export const SelectPicker: React.FC = () => {
+interface ISelectPciker {
+	mt: number
+}
+
+export const SelectPicker: React.FC<ISelectPciker> = ({ mt }) => {
 	const [large, setLarge] = useState<boolean>(false)
 
 	useEffect(() => {
@@ -16,8 +20,10 @@ export const SelectPicker: React.FC = () => {
 	}, [])
 
 	return (
-		<View>
-			<Label $large={large}>Pronomes</Label>
+		<Container>
+			<Label $large={large} $mt={mt}>
+				Pronomes
+			</Label>
 
 			<RNPickerSelect
 				useNativeAndroidPickerStyle={false}
@@ -43,7 +49,7 @@ export const SelectPicker: React.FC = () => {
 						display: 'flex',
 						borderColor: `${theme.colors.greyScale.strokeWhite}`,
 						borderWidth: 1,
-						borderRadius: 10,
+						borderRadius: 5,
 						color: `${theme.colors.greyScale.dimGray}`,
 						fontFamily: `${theme.fonts.hind.semiBold}`,
 						paddingLeft: 14,
@@ -63,7 +69,7 @@ export const SelectPicker: React.FC = () => {
 					/>
 				)}
 			/>
-		</View>
+		</Container>
 	)
 }
 
