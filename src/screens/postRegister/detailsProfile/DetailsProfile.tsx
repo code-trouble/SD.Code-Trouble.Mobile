@@ -13,7 +13,7 @@ export const DetailsProfile: React.FC = () => {
 	const navigation = useNavigation()
 
 	const navigate = () => {
-		navigation.navigate('Detalhes do Perfil' as never)
+		navigation.navigate('Conecte suas redes' as never)
 	}
 	const [large, setLarge] = useState<boolean>(false)
 
