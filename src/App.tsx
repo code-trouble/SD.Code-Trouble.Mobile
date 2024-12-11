@@ -20,11 +20,11 @@ function App(): React.JSX.Element {
 			<SafeAreaView />
 			<StatusBar />
 			{/* <Auth type={AuthType.ForgotPassword} /> */}
-			{/* <Boarding /> */}
+			<Boarding />
 			{/* <Username /> */}
-			<NavigationContainer>
-				<PostRegisterRouter />
-			</NavigationContainer>
+			{/* <NavigationContainer> */}
+			{/* <PostRegisterRouter /> */}
+			{/* </NavigationContainer> */}
 		</ThemeProvider>
 	)
 }

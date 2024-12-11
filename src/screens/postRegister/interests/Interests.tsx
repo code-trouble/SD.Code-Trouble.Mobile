@@ -12,7 +12,7 @@ export const Interests: React.FC = () => {
 	const [large, setLarge] = useState<boolean>(false)
 
 	useEffect(() => {
-		if (breakpoints() > 568) setLarge(true)
+		if (breakpoints() > 640) setLarge(true)
 	}, [])
 
 	const navigation = useNavigation()

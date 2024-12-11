@@ -12,7 +12,7 @@ export const Boarding: React.FC = () => {
 	const sliderRef = useRef<AppIntroSlider>(null)
 
 	useEffect(() => {
-		if (breakpoints() > 568) setLarge(true)
+		if (breakpoints() > 640) setLarge(true)
 	}, [])
 
 	const slides = [

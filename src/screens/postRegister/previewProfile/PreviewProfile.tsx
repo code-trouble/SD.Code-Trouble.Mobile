@@ -13,7 +13,7 @@ export const PreviewProfile: React.FC = () => {
 	const [valueInput, setValueInput] = useState<string>('')
 
 	useEffect(() => {
-		if (breakpoints() > 568) setLarge(true)
+		if (breakpoints() > 640) setLarge(true)
 	}, [])
 
 	const handleInput = (value: string) => {

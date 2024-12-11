@@ -11,6 +11,7 @@ export const ContainerImagem = styled.View<{ $large: boolean }>`
 `
 
 export const Imagem = styled.Image`
+    width: 100%;
 `
 
 export const Title = styled.Text<{ $large: boolean }>`
