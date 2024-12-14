@@ -20,7 +20,7 @@ export const Check: React.FC<ICheck> = ({ text }) => {
 			<Container $select={select} $large={large}>
 				<ContainerCheck $large={large}>
 					<Text $large={large}>{text}</Text>
-					{select ? <Close width={10} /> : ''}
+					{select ? <Close width={10} color="#fff" /> : ''}
 				</ContainerCheck>
 			</Container>
 		</TouchableOpacity>

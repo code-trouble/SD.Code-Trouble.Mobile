@@ -12,6 +12,7 @@ import Boarding from '@screens/boarding/Boarding'
 import type React from 'react'
 import { SafeAreaView, StatusBar } from 'react-native'
 import { ThemeProvider } from 'styled-components/native'
+import Bottom from './router/bottomNavigator/bottomNavigator.router'
 import PostRegisterRouter from './router/postRegister/postRegister.router'
 import { theme } from './types/theme'
 
@@ -23,10 +24,11 @@ function App(): React.JSX.Element {
 			{/* <Auth type={AuthType.ForgotPassword} /> */}
 			{/* <Boarding /> */}
 			{/* <Username /> */}
-			{/* <NavigationContainer> */}
-			{/* <PostRegisterRouter /> */}
-			{/* </NavigationContainer> */}
-			<Header />
+			<NavigationContainer>
+				{/* <PostRegisterRouter /> */}
+				<Bottom />
+			</NavigationContainer>
+			{/* <Header /> */}
 		</ThemeProvider>
 	)
 }
