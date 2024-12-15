@@ -1,5 +1,5 @@
 import type React from 'react'
-import { Clock } from '../../assets/icons'
+import { Clock, Person } from '../../assets/icons'
 import { Container, Title } from './style'
 
 function Home(): React.JSX.Element {
