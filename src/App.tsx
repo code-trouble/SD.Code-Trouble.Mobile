@@ -5,6 +5,7 @@
  * @format
  */
 
+import Header from '@components/Header/Header'
 import { NavigationContainer } from '@react-navigation/native'
 import Auth, { AuthType } from '@screens/auth'
 import Boarding from '@screens/boarding/Boarding'
@@ -20,11 +21,12 @@ function App(): React.JSX.Element {
 			<SafeAreaView />
 			<StatusBar />
 			{/* <Auth type={AuthType.ForgotPassword} /> */}
-			<Boarding />
+			{/* <Boarding /> */}
 			{/* <Username /> */}
 			{/* <NavigationContainer> */}
 			{/* <PostRegisterRouter /> */}
 			{/* </NavigationContainer> */}
+			<Header />
 		</ThemeProvider>
 	)
 }
