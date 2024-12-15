@@ -32,7 +32,7 @@ export const SignIn: React.FC = () => {
 	const [inputValue, setInputValue] = useState<string>('')
 
 	useEffect(() => {
-		if (breakpoints() > 568) setLarge(true)
+		if (breakpoints() > 640) setLarge(true)
 	}, [])
 
 	const handleInputChange = (value: string) => {

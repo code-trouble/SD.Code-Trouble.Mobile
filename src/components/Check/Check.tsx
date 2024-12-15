@@ -13,7 +13,7 @@ export const Check: React.FC<ICheck> = ({ text }) => {
 	const [select, setSelect] = useState<boolean>(false)
 
 	useEffect(() => {
-		if (breakpoints() > 568) setLarge(true)
+		if (breakpoints() > 640) setLarge(true)
 	}, [])
 	return (
 		<TouchableOpacity onPress={() => setSelect(!select)}>
