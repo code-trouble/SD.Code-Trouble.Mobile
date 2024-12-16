@@ -23,16 +23,12 @@ import ConmponentForm from '@components/ContainerForm/ContainerForm'
 import ComponentContainerInput from '@components/Input/Input'
 import ComponentLogo from '@components/Logo/Logo'
 import ComponentTitle from '@components/Title/Title'
+import { useBreakpointGlobal } from '@store/breakpointGlobal'
 import breakpoints from '@utils/dimensons'
 
 export const SignUp: React.FC = () => {
 	const [inputValue, setInputValue] = useState<string>('')
-
-	const [large, setLarge] = useState<boolean>(false)
-
-	useEffect(() => {
-		if (breakpoints() > 640) setLarge(true)
-	}, [])
+	const large = useBreakpointGlobal((state) => state.break)
 
 	const handleInputChange = (value: string) => {
 		setInputValue(value)

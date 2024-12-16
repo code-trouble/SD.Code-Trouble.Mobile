@@ -21,24 +21,22 @@ import { theme } from './types/theme'
 
 function App(): React.JSX.Element {
 	const { updateBreak } = useBreakpointGlobal()
-	const value = useBreakpointGlobal((state) => state.break)
 
 	useEffect(() => {
-		if (breakpoints() > 670) updateBreak(true)
+		if (breakpoints() > 700) updateBreak(true)
 	}, [updateBreak])
 
-	console.log(value)
 	return (
 		<ThemeProvider theme={theme}>
 			<SafeAreaView />
 			<StatusBar />
-			<Auth type={AuthType.ForgotPassword} />
+			{/* <Auth type={AuthType.SignUp} /> */}
 			{/* <Boarding /> */}
 			{/* <Username /> */}
-			{/* <NavigationContainer> */}
-			{/* <PostRegisterRouter /> */}
-			{/* <Bottom /> */}
-			{/* </NavigationContainer> */}
+			<NavigationContainer>
+				<PostRegisterRouter />
+				{/* <Bottom /> */}
+			</NavigationContainer>
 			{/* <Header /> */}
 		</ThemeProvider>
 	)

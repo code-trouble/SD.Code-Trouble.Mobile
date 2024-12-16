@@ -1,4 +1,5 @@
 import { Bell, Logo } from '@icons/index'
+import { useBreakpointGlobal } from '@store/breakpointGlobal'
 import breakpoints from '@utils/dimensons'
 import { useEffect, useState } from 'react'
 import { TouchableOpacity } from 'react-native'
@@ -10,11 +11,7 @@ interface IHeader {
 }
 
 export const Header: React.FC<IHeader> = ({ component, bottom }) => {
-	const [large, setLarge] = useState<boolean>(false)
-
-	useEffect(() => {
-		if (breakpoints() > 640) setLarge(true)
-	}, [])
+	const large = useBreakpointGlobal((state) => state.break)
 
 	return (
 		<Container $large={large}>

@@ -1,9 +1,8 @@
 import ComponentLogo from '@components/Logo/Logo'
 import { LeftArrow } from '@icons/index'
 import { useNavigation } from '@react-navigation/native'
-import breakpoints from '@utils/dimensons'
+import { useBreakpointGlobal } from '@store/breakpointGlobal'
 import type React from 'react'
-import { useEffect, useState } from 'react'
 import { TouchableOpacity } from 'react-native'
 import {
 	Container,
@@ -25,12 +24,8 @@ export const HeaderPostRegister: React.FC<IHeaderPostRegister> = ({
 	title,
 	percentage,
 }) => {
-	const [large, setLarge] = useState<boolean>(false)
+	const large = useBreakpointGlobal((state) => state.break)
 	const navigation = useNavigation()
-
-	useEffect(() => {
-		if (breakpoints() > 640) setLarge(true)
-	}, [])
 
 	return (
 		<Container>

@@ -1,18 +1,13 @@
 import { Logo } from '@icons/index'
-import breakpoints from '@utils/dimensons'
-import { useEffect, useState } from 'react'
+import { useBreakpointGlobal } from '@store/breakpointGlobal'
 import { ContainerLogo } from './styles'
 
 export const ComponentLogo: React.FC = () => {
-	const [isLarge, setIsLarge] = useState<boolean>(false)
-
-	useEffect(() => {
-		if (breakpoints() > 568) setIsLarge(true)
-	}, [])
+	const large = useBreakpointGlobal((state) => state.break)
 
 	return (
-		<ContainerLogo $large={isLarge}>
-			<Logo width={isLarge ? 149 : 96} />
+		<ContainerLogo $large={large}>
+			<Logo width={large ? 149 : 96} />
 		</ContainerLogo>
 	)
 }

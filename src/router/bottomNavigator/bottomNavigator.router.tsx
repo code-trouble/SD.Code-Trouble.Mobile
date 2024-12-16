@@ -3,8 +3,8 @@ import { Close, HomeIcon, LeftArrow, Person, Search } from '@icons/index'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { useNavigation } from '@react-navigation/native'
 import Home from '@screens/home'
+import { useBreakpointGlobal } from '@store/breakpointGlobal'
 import { theme } from '@theme/theme'
-import breakpoints from '@utils/dimensons'
 import type React from 'react'
 import { useEffect, useState } from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
@@ -21,11 +21,7 @@ const titles = {
 }
 
 export const TopHome: React.FC = () => {
-	const [large, setLarge] = useState<boolean>(false)
-
-	useEffect(() => {
-		if (breakpoints() > 640) setLarge(true)
-	}, [])
+	const large = useBreakpointGlobal((state) => state.break)
 
 	return (
 		<Tab.Navigator
@@ -59,7 +55,7 @@ export const TopHome: React.FC = () => {
 								textAlign: 'center',
 								marginTop: 5,
 								fontFamily: `${theme.fonts.montserrat.semiBold}`,
-								fontSize: 14,
+								fontSize: large ? 16 : 14,
 								color: focused
 									? `${theme.colors.greyScale.eerieBlack}`
 									: `${theme.colors.greyScale.frenchGray}`,
@@ -85,14 +81,9 @@ export const TopHome: React.FC = () => {
 
 export const TopSearch: React.FC = () => {
 	const navigate = useNavigation()
-
-	const [large, setLarge] = useState<boolean>(false)
+	const large = useBreakpointGlobal((state) => state.break)
 
 	const [value, setInput] = useState<string>('')
-
-	useEffect(() => {
-		if (breakpoints() > 640) setLarge(true)
-	}, [])
 
 	return (
 		<View style={{ flex: 1 }}>
@@ -312,11 +303,7 @@ export const TopSearch: React.FC = () => {
 }
 
 export const Bottom: React.FC = () => {
-	const [large, setLarge] = useState<boolean>(false)
-
-	useEffect(() => {
-		if (breakpoints() > 640) setLarge(true)
-	}, [])
+	const large = useBreakpointGlobal((state) => state.break)
 
 	return (
 		<Tab.Navigator
@@ -329,6 +316,7 @@ export const Bottom: React.FC = () => {
 				tabBarIconStyle: {
 					marginTop: 5,
 				},
+				tabBarHideOnKeyboard: true,
 			}}
 		>
 			<Tab.Screen

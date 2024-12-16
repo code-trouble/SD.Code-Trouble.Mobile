@@ -1,11 +1,8 @@
 import { ArrownDown, DownArrow } from '@icons/index'
+import { useBreakpointGlobal } from '@store/breakpointGlobal'
 import { theme } from '@theme/theme'
-import breakpoints from '@utils/dimensons'
 import type React from 'react'
-import { useEffect, useState } from 'react'
-import { View } from 'react-native'
 import RNPickerSelect from 'react-native-picker-select'
-import { Colors } from 'react-native/Libraries/NewAppScreen'
 import { Container, Label } from './style'
 
 interface ISelectPciker {
@@ -13,11 +10,7 @@ interface ISelectPciker {
 }
 
 export const SelectPicker: React.FC<ISelectPciker> = ({ mt }) => {
-	const [large, setLarge] = useState<boolean>(false)
-
-	useEffect(() => {
-		if (breakpoints() > 640) setLarge(true)
-	}, [])
+	const large = useBreakpointGlobal((state) => state.break)
 
 	return (
 		<Container>

@@ -3,6 +3,7 @@ import ComponentContainer from '@components/Container/Container'
 import ConmponentForm from '@components/ContainerForm/ContainerForm'
 import ComponentContainerInput from '@components/Input/Input'
 import { useNavigation } from '@react-navigation/native'
+import { useBreakpointGlobal } from '@store/breakpointGlobal'
 import breakpoints from '@utils/dimensons'
 import { useEffect, useState } from 'react'
 import { Keyboard } from 'react-native'
@@ -10,13 +11,9 @@ import { TouchableWithoutFeedback } from 'react-native'
 import { Container, Space, Warning } from './style'
 
 export const Username: React.FC = () => {
-	const [large, setLarge] = useState<boolean>(false)
+	const large = useBreakpointGlobal((state) => state.break)
 	const [inputValue, setInputValue] = useState<string>('')
 	const navigation = useNavigation()
-
-	useEffect(() => {
-		if (breakpoints() > 640) setLarge(true)
-	}, [])
 
 	const handleInputChange = (value: string) => {
 		setInputValue(value)

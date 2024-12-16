@@ -4,17 +4,13 @@ import ConmponentForm from '@components/ContainerForm/ContainerForm'
 import ComponentContainerInput from '@components/Input/Input'
 import ProfilePhoto from '@components/ProfilePhoto/ProfilePhoto'
 import SelectPicker from '@components/SelectPicker/SelectPicker'
-import breakpoints from '@utils/dimensons'
+import { useBreakpointGlobal } from '@store/breakpointGlobal'
 import { useEffect, useState } from 'react'
 import { ContainerBottom, Space } from './style'
 
 export const PreviewProfile: React.FC = () => {
-	const [large, setLarge] = useState<boolean>(false)
+	const large = useBreakpointGlobal((state) => state.break)
 	const [valueInput, setValueInput] = useState<string>('')
-
-	useEffect(() => {
-		if (breakpoints() > 640) setLarge(true)
-	}, [])
 
 	const handleInput = (value: string) => {
 		setValueInput(value)
