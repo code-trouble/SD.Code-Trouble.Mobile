@@ -5,22 +5,19 @@ import ConmponentForm from '@components/ContainerForm/ContainerForm'
 import ComponentContainerInput from '@components/Input/Input'
 import { Behance, Dribble, GitHub, Linkeding } from '@icons/index'
 import { useNavigation } from '@react-navigation/native'
+import { useBreakpointGlobal } from '@store/breakpointGlobal'
 import breakpoints from '@utils/dimensons'
 import { useEffect, useState } from 'react'
 import { Keyboard, ScrollView, TouchableWithoutFeedback } from 'react-native'
 import { ContainerBottom, ContainerGap, ContainerIcon, Text } from './style'
 
 export const SocialMedia: React.FC = () => {
-	const [large, setLarge] = useState<boolean>(false)
+	const large = useBreakpointGlobal((state) => state.break)
 	const [inputValue, setInputValue] = useState<string>('')
 
 	const handleInput = (value: string) => {
 		setInputValue(value)
 	}
-
-	useEffect(() => {
-		if (breakpoints() > 640) setLarge(true)
-	}, [])
 
 	const navigation = useNavigation()
 

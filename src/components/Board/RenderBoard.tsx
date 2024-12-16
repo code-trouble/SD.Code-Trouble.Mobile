@@ -1,3 +1,4 @@
+import { useBreakpointGlobal } from '@store/breakpointGlobal'
 //@ts-nocheck
 import breakpoints from '@utils/dimensons'
 import { useEffect, useState } from 'react'
@@ -10,11 +11,7 @@ interface IBoard {
 }
 
 export const RenderBoard: React.FC<IBoard> = ({ image, text, title }) => {
-	const [large, setLarge] = useState<boolean>(false)
-
-	useEffect(() => {
-		if (breakpoints() > 640) setLarge(true)
-	}, [])
+	const large = useBreakpointGlobal((state) => state.break)
 
 	return (
 		<Container>

@@ -5,21 +5,16 @@ import ConmponentForm from '@components/ContainerForm/ContainerForm'
 import ProfilePhoto from '@components/ProfilePhoto/ProfilePhoto'
 import SelectPicker from '@components/SelectPicker/SelectPicker'
 import { useNavigation } from '@react-navigation/native'
-import breakpoints from '@utils/dimensons'
-import { useEffect, useState } from 'react'
+import { useBreakpointGlobal } from '@store/breakpointGlobal'
 import { ContainerBottom } from './style'
 
 export const DetailsProfile: React.FC = () => {
 	const navigation = useNavigation()
+	const large = useBreakpointGlobal((state) => state.break)
 
 	const navigate = () => {
 		navigation.navigate('Conecte suas redes' as never)
 	}
-	const [large, setLarge] = useState<boolean>(false)
-
-	useEffect(() => {
-		if (breakpoints() > 640) setLarge(true)
-	}, [])
 
 	return (
 		<ComponentContainer large={large}>

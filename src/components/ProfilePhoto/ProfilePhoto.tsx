@@ -1,6 +1,6 @@
 import { Person } from '@icons/index'
+import { useBreakpointGlobal } from '@store/breakpointGlobal'
 import { theme } from '@theme/theme'
-import breakpoints from '@utils/dimensons'
 import { useEffect, useState } from 'react'
 import { TouchableOpacity } from 'react-native'
 // biome-ignore lint/style/useImportType: <explanation>
@@ -13,8 +13,7 @@ import { Container, ContainerImage, IconView, Image, Text } from './style'
 
 export const ProfilePhoto = () => {
 	const [selectedImage, setSelectedImage] = useState<string | null>(null)
-	const [large, setLarge] = useState<boolean>(false)
-
+	const large = useBreakpointGlobal((state) => state.break)
 	const openImagePicker = () => {
 		const options: ImageLibraryOptions = {
 			mediaType: 'photo',
@@ -36,10 +35,6 @@ export const ProfilePhoto = () => {
 			setSelectedImage(imageUri || null)
 		}
 	}
-
-	useEffect(() => {
-		if (breakpoints() > 640) setLarge(true)
-	}, [])
 
 	return (
 		<Container>

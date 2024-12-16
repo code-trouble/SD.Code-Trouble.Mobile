@@ -1,5 +1,6 @@
 import RenderBoard from '@components/Board/RenderBoard'
 import { CompactLogo, NextButton } from '@icons/index'
+import { useBreakpointGlobal } from '@store/breakpointGlobal'
 import { theme } from '@theme/theme'
 import breakpoints from '@utils/dimensons'
 import { useEffect, useRef, useState } from 'react'
@@ -8,12 +9,8 @@ import { Container, ContainerLogo, Done, Skip, TextDone } from './style'
 
 export const Boarding: React.FC = () => {
 	const [color, setColor] = useState<string>(theme.colors.primary)
-	const [large, setLarge] = useState<boolean>(false)
+	const large = useBreakpointGlobal((state) => state.break)
 	const sliderRef = useRef<AppIntroSlider>(null)
-
-	useEffect(() => {
-		if (breakpoints() > 640) setLarge(true)
-	}, [])
 
 	const slides = [
 		{

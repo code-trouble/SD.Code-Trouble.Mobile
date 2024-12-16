@@ -1,4 +1,5 @@
 import { Close } from '@icons/index'
+import { useBreakpointGlobal } from '@store/breakpointGlobal'
 import breakpoints from '@utils/dimensons'
 import { useEffect, useState } from 'react'
 import { TouchableOpacity } from 'react-native'
@@ -9,12 +10,9 @@ interface ICheck {
 }
 
 export const Check: React.FC<ICheck> = ({ text }) => {
-	const [large, setLarge] = useState<boolean>(false)
+	const large = useBreakpointGlobal((state) => state.break)
 	const [select, setSelect] = useState<boolean>(false)
 
-	useEffect(() => {
-		if (breakpoints() > 640) setLarge(true)
-	}, [])
 	return (
 		<TouchableOpacity onPress={() => setSelect(!select)}>
 			<Container $select={select} $large={large}>

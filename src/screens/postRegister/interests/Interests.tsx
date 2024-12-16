@@ -3,17 +3,14 @@ import ComponentButtonSkip from '@components/ButtonSkip/ButtonSkip'
 import Check from '@components/Check/Check'
 import ComponentContainer from '@components/Container/Container'
 import { useNavigation } from '@react-navigation/native'
+import { useBreakpointGlobal } from '@store/breakpointGlobal'
 import breakpoints from '@utils/dimensons'
 import type React from 'react'
 import { useEffect, useState } from 'react'
 import { Container, ContainerBottom } from './styles'
 
 export const Interests: React.FC = () => {
-	const [large, setLarge] = useState<boolean>(false)
-
-	useEffect(() => {
-		if (breakpoints() > 640) setLarge(true)
-	}, [])
+	const large = useBreakpointGlobal((state) => state.break)
 
 	const navigation = useNavigation()
 
