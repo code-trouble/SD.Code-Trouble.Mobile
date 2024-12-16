@@ -8,7 +8,7 @@
 import Header from '@components/Header/Header'
 import { NavigationContainer } from '@react-navigation/native'
 import Auth, { AuthType } from '@screens/auth'
-import Boarding from '@screens/boarding/Boarding'
+import Boarding from '@screens/onBoarding/Boarding'
 import { useBreakpointGlobal } from '@store/breakpointGlobal'
 import breakpoints from '@utils/dimensons'
 import type React from 'react'
