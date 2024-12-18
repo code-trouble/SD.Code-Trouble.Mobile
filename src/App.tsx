@@ -6,6 +6,7 @@
  */
 
 import Header from '@components/Header/Header'
+import ComponentToast from '@components/Toast/Toast'
 import { NavigationContainer } from '@react-navigation/native'
 import Auth, { AuthType } from '@screens/auth'
 import Boarding from '@screens/onBoarding/Boarding'
@@ -33,11 +34,12 @@ function App(): React.JSX.Element {
 			{/* <Auth type={AuthType.SignUp} /> */}
 			{/* <Boarding /> */}
 			{/* <Username /> */}
-			<NavigationContainer>
-				<PostRegisterRouter />
-				{/* <Bottom /> */}
-			</NavigationContainer>
+			{/* <NavigationContainer> */}
+			{/* <PostRegisterRouter /> */}
+			{/* <Bottom /> */}
+			{/* </NavigationContainer> */}
 			{/* <Header /> */}
+			<ComponentToast />
 		</ThemeProvider>
 	)
 }
