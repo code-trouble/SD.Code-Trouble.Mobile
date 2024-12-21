@@ -24,6 +24,7 @@ import ComponentContainerInput from '@components/Input/Input'
 import ComponentLogo from '@components/Logo/Logo'
 import ComponentTitle from '@components/Title/Title'
 import ComponentToast, { TypeToast } from '@components/Toast/Toast'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import { useNavigation } from '@react-navigation/native'
 import { useBreakpointGlobal } from '@store/breakpointGlobal'
 import { theme } from '@theme/theme'
@@ -34,6 +35,7 @@ export const SignUp: React.FC = () => {
 	const [passwordValue, setPasswordValue] = useState<string>('')
 	const [displayMessage, setDisplayMessage] = useState<boolean>(false)
 	const [message, setMessage] = useState<string>('')
+	const [type, setType] = useState<string>()
 	const large = useBreakpointGlobal((state) => state.break)
 	const navigate = useNavigation()
 
@@ -53,10 +55,46 @@ export const SignUp: React.FC = () => {
 		if (nameValue === '' || emailValue === '' || passwordValue === '') {
 			setMessage('Campos inválidos')
 			setDisplayMessage(true)
+			setType('warning')
 		} else if (!emailValue.includes('@')) {
 			setMessage('Email inválido')
 			setDisplayMessage(true)
 		}
+
+		registerUser()
+	}
+
+	const registerUser = async () => {
+		if ((await verifyUser()) == null) {
+			await AsyncStorage.setItem(
+				`user_${emailValue}`,
+				JSON.stringify({ nameValue, emailValue, passwordValue }),
+			)
+				.then(() => {
+					setMessage('Cadastro Realizado')
+					setType('sucess')
+					setDisplayMessage(true)
+					setTimeout(() => {
+						navigation()
+					}, 2000)
+				})
+				.catch(() => {
+					setMessage('Erro no cadastro')
+					setType('warning')
+					setDisplayMessage(true)
+				})
+			return
+		}
+
+		setMessage('Email existente')
+		setType('warning')
+		setDisplayMessage(true)
+	}
+
+	const verifyUser = async (): Promise<object | undefined> => {
+		const user = await AsyncStorage.getItem(`user_${emailValue}`)
+		console.log(JSON.parse(user))
+		return JSON.parse(user)
 	}
 
 	const navigation = () => {
@@ -78,11 +116,7 @@ export const SignUp: React.FC = () => {
 				<TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
 					<ComponentContainer large={large}>
 						{displayMessage && (
-							<ComponentToast
-								text={message}
-								type={TypeToast.warning}
-								mt={large ? 60 : 45}
-							/>
+							<ComponentToast text={message} type={type} mt={large ? 60 : 45} />
 						)}
 						<ComponentLogo />
 
