@@ -1,4 +1,5 @@
 import { Attention, Check, Danger, Info } from '@icons/index'
+import { useBreakpointGlobal } from '@store/breakpointGlobal'
 import { theme } from '@theme/theme'
 import type React from 'react'
 import { useEffect, useRef } from 'react'
@@ -8,39 +9,41 @@ import { Container, ContainerIcon, Horizontal, Text } from './style'
 interface IToast {
 	text: string
 	type: TypeToast
+	mt: number
 }
 
-enum TypeToast {
+export enum TypeToast {
 	danger = 'danger',
 	sucess = 'sucess',
 	warning = 'warning',
 	info = 'info',
 }
 
-export const ComponentToast: React.FC<IToast> = ({ text, type }) => {
+export const ComponentToast: React.FC<IToast> = ({ text, type, mt }) => {
 	const position = useRef(new Animated.Value(300)).current
+	const large = useBreakpointGlobal((state) => state.break)
 
 	let component: React.ReactNode = null
 	let backgroundColor = ''
 
 	switch (type) {
 		case 'danger':
-			component = <Danger />
+			component = <Danger width={large ? 20 : 15} />
 			backgroundColor = theme.colors.semanticColors.danger.danger
 			break
 
 		case 'sucess':
-			component = <Check />
+			component = <Check width={large ? 20 : 15} />
 			backgroundColor = theme.colors.semanticColors.sucess.sucess
 			break
 
 		case 'warning':
-			component = <Attention />
+			component = <Attention width={large ? 20 : 15} />
 			backgroundColor = theme.colors.semanticColors.warn.warn
 			break
 
 		case 'info':
-			component = <Info />
+			component = <Info width={large ? 20 : 15} />
 			backgroundColor = theme.colors.semanticColors.info.info
 			break
 
@@ -68,9 +71,11 @@ export const ComponentToast: React.FC<IToast> = ({ text, type }) => {
 
 	return (
 		<Animated.View style={{ transform: [{ translateX: position }] }}>
-			<Container>
+			<Container $mt={mt} $large={large}>
 				<Horizontal>
-					<ContainerIcon $color={backgroundColor}>{component}</ContainerIcon>
+					<ContainerIcon $color={backgroundColor} $large={large}>
+						{component}
+					</ContainerIcon>
 					<Text>{text}</Text>
 				</Horizontal>
 			</Container>

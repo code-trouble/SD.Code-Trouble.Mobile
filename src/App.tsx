@@ -31,7 +31,7 @@ function App(): React.JSX.Element {
 		<ThemeProvider theme={theme}>
 			<SafeAreaView />
 			<StatusBar />
-			{/* <Auth type={AuthType.SignUp} /> */}
+			<Auth type={AuthType.SignUp} />
 			{/* <Boarding /> */}
 			{/* <Username /> */}
 			{/* <NavigationContainer> */}
@@ -39,7 +39,7 @@ function App(): React.JSX.Element {
 			{/* <Bottom /> */}
 			{/* </NavigationContainer> */}
 			{/* <Header /> */}
-			<ComponentToast />
+			{/* <ComponentToast /> */}
 		</ThemeProvider>
 	)
 }
