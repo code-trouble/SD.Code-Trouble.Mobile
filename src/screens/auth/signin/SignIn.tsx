@@ -26,6 +26,7 @@ import ComponentContainerInput from '@components/Input/Input'
 import ComponentLogo from '@components/Logo/Logo'
 import ComponentTitle from '@components/Title/Title'
 import ComponentToast, { TypeToast } from '@components/Toast/Toast'
+import { useNavigation } from '@react-navigation/native'
 import { useBreakpointGlobal } from '@store/breakpointGlobal'
 
 export const SignIn: React.FC = () => {
@@ -34,6 +35,7 @@ export const SignIn: React.FC = () => {
 	const [displayMessage, setDisplayMessage] = useState<boolean>(false)
 	const [message, setMessage] = useState<string>('')
 	const large = useBreakpointGlobal((state) => state.break)
+	const navigate = useNavigation()
 
 	const handleInputEmail = (value: string) => {
 		setEmailValue(value)
@@ -47,11 +49,14 @@ export const SignIn: React.FC = () => {
 		if (emailValue === '' || passwordValue === '') {
 			setMessage('Campos inválidos')
 			setDisplayMessage(true)
+		} else if (!emailValue.includes('@')) {
+			setMessage('Email inválido')
+			setDisplayMessage(true)
 		}
 	}
 
-	const teste = () => {
-		console.log('teste')
+	const navigation = () => {
+		navigate.navigate('SignUp' as never)
 	}
 
 	setTimeout(() => {
@@ -117,7 +122,7 @@ export const SignIn: React.FC = () => {
 
 								<ContainerAccount>
 									<Account $large={large}>Ainda não tem conta?</Account>
-									<TouchableOpacity onPress={teste}>
+									<TouchableOpacity onPress={navigation}>
 										<TextAccount $large={large}>Cadastrar-se aqui</TextAccount>
 									</TouchableOpacity>
 								</ContainerAccount>
