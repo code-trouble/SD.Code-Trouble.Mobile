@@ -31,7 +31,7 @@ function App(): React.JSX.Element {
 		<ThemeProvider theme={theme}>
 			<SafeAreaView />
 			<StatusBar />
-			<Auth type={AuthType.SignIn} />
+			<Auth type={AuthType.SignUp} />
 			{/* <Boarding /> */}
 			{/* <Username /> */}
 			{/* <NavigationContainer> */}
