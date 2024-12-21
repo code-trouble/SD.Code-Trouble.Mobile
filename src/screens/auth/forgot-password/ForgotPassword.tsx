@@ -22,6 +22,7 @@ import ComponentContainerInput from '@components/Input/Input'
 import ComponentLogo from '@components/Logo/Logo'
 import ComponentTitle from '@components/Title/Title'
 import { useBreakpointGlobal } from '@store/breakpointGlobal'
+import { theme } from '@theme/theme'
 
 export const ForgotPassword: React.FC = () => {
 	const [inputValue, setInputValue] = useState<string>('')
@@ -33,7 +34,12 @@ export const ForgotPassword: React.FC = () => {
 
 	return (
 		<KeyboardAvoidingView style={{ flex: 1 }}>
-			<ScrollView style={{ flexGrow: 1 }}>
+			<ScrollView
+				style={{
+					flexGrow: 1,
+					backgroundColor: theme.colors.greyScale.offWhite,
+				}}
+			>
 				<TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
 					<ComponentContainer large={large}>
 						<ComponentLogo />

@@ -1,6 +1,8 @@
 import RenderBoard from '@components/Board/RenderBoard'
 import { CompactLogo, NextButton } from '@icons/index'
+import { useNavigation } from '@react-navigation/native'
 import { useBreakpointGlobal } from '@store/breakpointGlobal'
+import { useOnboardingStore } from '@store/firstOpen'
 import { theme } from '@theme/theme'
 import breakpoints from '@utils/dimensons'
 import { useEffect, useRef, useState } from 'react'
@@ -8,6 +10,7 @@ import AppIntroSlider from 'react-native-app-intro-slider'
 import { Container, ContainerLogo, Done, Skip, TextDone } from './style'
 
 export const Boarding: React.FC = () => {
+	const { setFirstOpen } = useOnboardingStore()
 	const [color, setColor] = useState<string>(theme.colors.primary)
 	const large = useBreakpointGlobal((state) => state.break)
 	const sliderRef = useRef<AppIntroSlider>(null)
@@ -52,6 +55,10 @@ export const Boarding: React.FC = () => {
 		sliderRef.current?.goToSlide(lastSlideIndex)
 	}
 
+	const done = async () => {
+		setFirstOpen()
+	}
+
 	return (
 		<Container>
 			<ContainerLogo $large={large}>
@@ -82,7 +89,7 @@ export const Boarding: React.FC = () => {
 						<TextDone $large={large}>Entrar e Começar</TextDone>
 					</Done>
 				)}
-				onDone={() => console.log('finalizado')}
+				onDone={done}
 			/>
 		</Container>
 	)
