@@ -56,8 +56,8 @@ export const SignIn: React.FC = () => {
 		}
 	}
 
-	const navigation = () => {
-		navigate.navigate('SignUp' as never)
+	const navigation = (value: string) => {
+		navigate.navigate(value as never)
 	}
 
 	setTimeout(() => {
@@ -104,7 +104,7 @@ export const SignIn: React.FC = () => {
 							/>
 
 							<ContainerForgot>
-								<TouchableOpacity>
+								<TouchableOpacity onPress={() => navigation('ForgotPassword')}>
 									<ForgotPasswordText $large={large}>
 										Esqueceu a senha?
 									</ForgotPasswordText>
@@ -128,7 +128,7 @@ export const SignIn: React.FC = () => {
 
 								<ContainerAccount>
 									<Account $large={large}>Ainda não tem conta?</Account>
-									<TouchableOpacity onPress={navigation}>
+									<TouchableOpacity onPress={() => navigation('SignUp')}>
 										<TextAccount $large={large}>Cadastrar-se aqui</TextAccount>
 									</TouchableOpacity>
 								</ContainerAccount>

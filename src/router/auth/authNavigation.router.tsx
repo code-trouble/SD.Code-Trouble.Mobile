@@ -1,4 +1,6 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import ForgotPassword from '@screens/auth/forgot-password/ForgotPassword'
+import RecoveryPassword from '@screens/auth/recovery-password/RecoveryPassword'
 import SignIn from '@screens/auth/signin/SignIn'
 import SignUp from '@screens/auth/signup/SignUp'
 import Boarding from '@screens/onBoarding/Boarding'
@@ -29,6 +31,8 @@ export const AuthNavigation: React.FC = () => {
 				<Stack.Screen name="SignIn" component={SignIn} />
 			)}
 			<Stack.Screen name="SignUp" component={SignUp} />
+			<Stack.Screen name="ForgotPassword" component={ForgotPassword} />
+			<Stack.Screen name="RecoveryPassword" component={RecoveryPassword} />
 		</Stack.Navigator>
 	)
 }
