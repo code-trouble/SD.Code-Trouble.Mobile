@@ -23,22 +23,59 @@ import ConmponentForm from '@components/ContainerForm/ContainerForm'
 import ComponentContainerInput from '@components/Input/Input'
 import ComponentLogo from '@components/Logo/Logo'
 import ComponentTitle from '@components/Title/Title'
+import ComponentToast, { TypeToast } from '@components/Toast/Toast'
 import { useBreakpointGlobal } from '@store/breakpointGlobal'
-import breakpoints from '@utils/dimensons'
 
 export const SignUp: React.FC = () => {
-	const [inputValue, setInputValue] = useState<string>('')
+	const [nameValue, setNameValue] = useState<string>('')
+	const [emailValue, setEmailValue] = useState<string>('')
+	const [passwordValue, setPasswordValue] = useState<string>('')
+	const [displayMessage, setDisplayMessage] = useState<boolean>(false)
+	const [message, setMessage] = useState<string>('')
 	const large = useBreakpointGlobal((state) => state.break)
 
-	const handleInputChange = (value: string) => {
-		setInputValue(value)
+	const handleInputName = (value: string) => {
+		setNameValue(value)
 	}
+
+	const handleInputEmail = (value: string) => {
+		setEmailValue(value)
+	}
+
+	const handleInputPassword = (value: string) => {
+		setPasswordValue(value)
+	}
+
+	const valideInputs = () => {
+		if (nameValue === '' || emailValue === '' || passwordValue === '') {
+			setMessage('Campos inválidos')
+			setDisplayMessage(true)
+		} else if (!emailValue.includes('@')) {
+			setMessage('Email inválido')
+			setDisplayMessage(true)
+		}
+	}
+
+	const teste = () => {
+		console.log('teste')
+	}
+
+	setTimeout(() => {
+		setDisplayMessage(false)
+	}, 5000)
 
 	return (
 		<KeyboardAvoidingView style={{ flex: 1 }}>
 			<ScrollView style={{ flexGrow: 1 }}>
 				<TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
 					<ComponentContainer large={large}>
+						{displayMessage && (
+							<ComponentToast
+								text={message}
+								type={TypeToast.warning}
+								mt={large ? 60 : 45}
+							/>
+						)}
 						<ComponentLogo />
 
 						<ConmponentForm>
@@ -49,7 +86,7 @@ export const SignUp: React.FC = () => {
 								valueLabel="Nome Social"
 								password={false}
 								placeholder="Digite seu nome"
-								onInputChange={handleInputChange}
+								onInputChange={handleInputName}
 							/>
 
 							<ComponentContainerInput
@@ -57,7 +94,7 @@ export const SignUp: React.FC = () => {
 								valueLabel="Email"
 								password={false}
 								placeholder="Digite seu email"
-								onInputChange={handleInputChange}
+								onInputChange={handleInputEmail}
 							/>
 
 							<ComponentContainerInput
@@ -65,11 +102,15 @@ export const SignUp: React.FC = () => {
 								valueLabel="Senha"
 								password={true}
 								placeholder="******"
-								onInputChange={handleInputChange}
+								onInputChange={handleInputPassword}
 							/>
 
 							<ContainerBottom $large={large}>
-								<ComponentButton large={large} text="Criar Conta" />
+								<ComponentButton
+									large={large}
+									text="Criar Conta"
+									onPress={valideInputs}
+								/>
 
 								<ContainerDivider>
 									<Divider />
@@ -81,7 +122,7 @@ export const SignUp: React.FC = () => {
 
 								<ContainerAccount>
 									<Account $large={large}>Já possui uma conta?</Account>
-									<TouchableOpacity>
+									<TouchableOpacity onPress={teste}>
 										<TextAccount $large={large}>Faça login aqui.</TextAccount>
 									</TouchableOpacity>
 								</ContainerAccount>
