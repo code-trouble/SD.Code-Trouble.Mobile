@@ -26,15 +26,26 @@ import ComponentContainerInput from '@components/Input/Input'
 import ComponentLogo from '@components/Logo/Logo'
 import ComponentTitle from '@components/Title/Title'
 import ComponentToast, { TypeToast } from '@components/Toast/Toast'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import { useNavigation } from '@react-navigation/native'
 import { useBreakpointGlobal } from '@store/breakpointGlobal'
+import { useLoged } from '@store/userLoged'
 import { theme } from '@theme/theme'
+
+type user = {
+	nameValue: string
+	emailvalue: string
+	passwordValue: string
+}
 
 export const SignIn: React.FC = () => {
 	const [emailValue, setEmailValue] = useState<string>('')
 	const [passwordValue, setPasswordValue] = useState<string>('')
 	const [displayMessage, setDisplayMessage] = useState<boolean>(false)
 	const [message, setMessage] = useState<string>('')
+	const [type, setType] = useState<string>()
+	const [user, setUser] = useState<user>()
+	const { updateLoged } = useLoged()
 	const large = useBreakpointGlobal((state) => state.break)
 	const navigate = useNavigation()
 
@@ -46,14 +57,34 @@ export const SignIn: React.FC = () => {
 		setPasswordValue(value)
 	}
 
-	const validateInput = () => {
+	const validateInput = async () => {
 		if (emailValue === '' || passwordValue === '') {
 			setMessage('Campos inválidos')
 			setDisplayMessage(true)
 		} else if (!emailValue.includes('@')) {
 			setMessage('Email inválido')
 			setDisplayMessage(true)
+		} else if ((await verifyUser()) == null) {
+			setMessage('Email não encontrado')
+			setType('warning')
+			setDisplayMessage(true)
+		} else {
+			console.log(user)
+			if (user?.passwordValue === passwordValue) {
+				setMessage('Login efetuado')
+				setType('sucess')
+				setDisplayMessage(true)
+				setTimeout(() => {
+					updateLoged(true)
+				}, 2000)
+			}
 		}
+	}
+
+	const verifyUser = async (): Promise<object | undefined> => {
+		const user = await AsyncStorage.getItem(`user_${emailValue}`)
+		setUser(JSON.parse(user))
+		return JSON.parse(user)
 	}
 
 	const navigation = (value: string) => {
@@ -75,11 +106,7 @@ export const SignIn: React.FC = () => {
 				<TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
 					<ComponentContainer large={large}>
 						{displayMessage && (
-							<ComponentToast
-								text={message}
-								type={TypeToast.warning}
-								mt={large ? 60 : 45}
-							/>
+							<ComponentToast text={message} type={type} mt={large ? 60 : 45} />
 						)}
 						<ComponentLogo />
 
