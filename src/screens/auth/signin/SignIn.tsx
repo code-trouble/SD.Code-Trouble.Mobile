@@ -25,21 +25,51 @@ import ConmponentForm from '@components/ContainerForm/ContainerForm'
 import ComponentContainerInput from '@components/Input/Input'
 import ComponentLogo from '@components/Logo/Logo'
 import ComponentTitle from '@components/Title/Title'
+import ComponentToast, { TypeToast } from '@components/Toast/Toast'
 import { useBreakpointGlobal } from '@store/breakpointGlobal'
 
 export const SignIn: React.FC = () => {
-	const [inputValue, setInputValue] = useState<string>('')
+	const [emailValue, setEmailValue] = useState<string>('')
+	const [passwordValue, setPasswordValue] = useState<string>('')
+	const [displayMessage, setDisplayMessage] = useState<boolean>(false)
+	const [message, setMessage] = useState<string>('')
 	const large = useBreakpointGlobal((state) => state.break)
 
-	const handleInputChange = (value: string) => {
-		setInputValue(value)
+	const handleInputEmail = (value: string) => {
+		setEmailValue(value)
 	}
+
+	const handleInputPasword = (value: string) => {
+		setPasswordValue(value)
+	}
+
+	const validateInput = () => {
+		if (emailValue === '' || passwordValue === '') {
+			setMessage('Campos inválidos')
+			setDisplayMessage(true)
+		}
+	}
+
+	const teste = () => {
+		console.log('teste')
+	}
+
+	setTimeout(() => {
+		setDisplayMessage(false)
+	}, 5000)
 
 	return (
 		<KeyboardAvoidingView style={{ flex: 1 }}>
 			<ScrollView style={{ flexGrow: 1 }}>
 				<TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
 					<ComponentContainer large={large}>
+						{displayMessage && (
+							<ComponentToast
+								text={message}
+								type={TypeToast.warning}
+								mt={large ? 60 : 45}
+							/>
+						)}
 						<ComponentLogo />
 
 						<ConmponentForm>
@@ -48,7 +78,7 @@ export const SignIn: React.FC = () => {
 							<ComponentContainerInput
 								large={large}
 								password={false}
-								onInputChange={handleInputChange}
+								onInputChange={handleInputEmail}
 								valueLabel="Email"
 								placeholder="Digite seu email"
 							/>
@@ -56,7 +86,7 @@ export const SignIn: React.FC = () => {
 							<ComponentContainerInput
 								large={large}
 								password={true}
-								onInputChange={handleInputChange}
+								onInputChange={handleInputPasword}
 								valueLabel="Senha"
 								placeholder="Digite sua senha"
 								lastInput={true}
@@ -71,7 +101,11 @@ export const SignIn: React.FC = () => {
 							</ContainerForgot>
 
 							<ContainerBottom $large={large}>
-								<ComponentButton large={large} text="Entrar" />
+								<ComponentButton
+									large={large}
+									text="Entrar"
+									onPress={validateInput}
+								/>
 
 								<ContainerDivider>
 									<Divider />
@@ -83,7 +117,7 @@ export const SignIn: React.FC = () => {
 
 								<ContainerAccount>
 									<Account $large={large}>Ainda não tem conta?</Account>
-									<TouchableOpacity>
+									<TouchableOpacity onPress={teste}>
 										<TextAccount $large={large}>Cadastrar-se aqui</TextAccount>
 									</TouchableOpacity>
 								</ContainerAccount>
