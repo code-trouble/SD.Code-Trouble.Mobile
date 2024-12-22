@@ -21,16 +21,44 @@ import ConmponentForm from '@components/ContainerForm/ContainerForm'
 import ComponentContainerInput from '@components/Input/Input'
 import ComponentLogo from '@components/Logo/Logo'
 import ComponentTitle from '@components/Title/Title'
+import ComponentToast, { TypeToast } from '@components/Toast/Toast'
+import { useNavigation } from '@react-navigation/native'
 import { useBreakpointGlobal } from '@store/breakpointGlobal'
 import { theme } from '@theme/theme'
 
 export const ForgotPassword: React.FC = () => {
-	const [inputValue, setInputValue] = useState<string>('')
+	const [emailValue, setEmailValue] = useState<string>('')
 	const large = useBreakpointGlobal((state) => state.break)
+	const [displayMessage, setDisplayMessage] = useState<boolean>(false)
+	const [message, setMessage] = useState<string>('')
+	const navigate = useNavigation()
 
-	const handleInputChange = (value: string) => {
-		setInputValue(value)
+	const handleInputEmail = (value: string) => {
+		setEmailValue(value)
 	}
+
+	const navigation = () => {
+		navigate.goBack()
+	}
+
+	const validateInput = () => {
+		if (emailValue === '') {
+			setMessage('Campos inválidos')
+			setDisplayMessage(true)
+			return
+		}
+		if (!emailValue.includes('@')) {
+			setMessage('Email inválido')
+			setDisplayMessage(true)
+			return
+		}
+
+		navigate.navigate('RecoveryPassword' as never)
+	}
+
+	setTimeout(() => {
+		setDisplayMessage(false)
+	}, 5000)
 
 	return (
 		<KeyboardAvoidingView style={{ flex: 1 }}>
@@ -42,6 +70,13 @@ export const ForgotPassword: React.FC = () => {
 			>
 				<TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
 					<ComponentContainer large={large}>
+						{displayMessage && (
+							<ComponentToast
+								text={message}
+								type={TypeToast.warning}
+								mt={large ? 60 : 45}
+							/>
+						)}
 						<ComponentLogo />
 
 						<ConmponentForm>
@@ -52,7 +87,7 @@ export const ForgotPassword: React.FC = () => {
 								password={false}
 								placeholder="Digite seu email"
 								valueLabel="Email"
-								onInputChange={handleInputChange}
+								onInputChange={handleInputEmail}
 							/>
 
 							<InfoText $large={large}>
@@ -60,11 +95,15 @@ export const ForgotPassword: React.FC = () => {
 							</InfoText>
 
 							<ContainerBottom $large={large}>
-								<ComponentButton large={large} text="Enviar" />
+								<ComponentButton
+									large={large}
+									text="Enviar"
+									onPress={validateInput}
+								/>
 
 								<ContainerAccount>
 									<Account $large={large}>Voltar ao</Account>
-									<TouchableOpacity>
+									<TouchableOpacity onPress={navigation}>
 										<TextAccount $large={large}>Login</TextAccount>
 									</TouchableOpacity>
 								</ContainerAccount>
