@@ -24,6 +24,7 @@ import ComponentContainerInput from '@components/Input/Input'
 import ComponentLogo from '@components/Logo/Logo'
 import ComponentTitle from '@components/Title/Title'
 import ComponentToast, { TypeToast } from '@components/Toast/Toast'
+import { useNavigation } from '@react-navigation/native'
 import { useBreakpointGlobal } from '@store/breakpointGlobal'
 
 export const SignUp: React.FC = () => {
@@ -33,6 +34,7 @@ export const SignUp: React.FC = () => {
 	const [displayMessage, setDisplayMessage] = useState<boolean>(false)
 	const [message, setMessage] = useState<string>('')
 	const large = useBreakpointGlobal((state) => state.break)
+	const navigate = useNavigation()
 
 	const handleInputName = (value: string) => {
 		setNameValue(value)
@@ -56,8 +58,8 @@ export const SignUp: React.FC = () => {
 		}
 	}
 
-	const teste = () => {
-		console.log('teste')
+	const navigation = () => {
+		navigate.goBack()
 	}
 
 	setTimeout(() => {
@@ -122,7 +124,7 @@ export const SignUp: React.FC = () => {
 
 								<ContainerAccount>
 									<Account $large={large}>Já possui uma conta?</Account>
-									<TouchableOpacity onPress={teste}>
+									<TouchableOpacity onPress={navigation}>
 										<TextAccount $large={large}>Faça login aqui.</TextAccount>
 									</TouchableOpacity>
 								</ContainerAccount>

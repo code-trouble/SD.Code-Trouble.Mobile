@@ -16,6 +16,7 @@ import type React from 'react'
 import { useEffect } from 'react'
 import { SafeAreaView, StatusBar } from 'react-native'
 import { ThemeProvider } from 'styled-components/native'
+import Router from './router'
 import Bottom from './router/bottomNavigator/bottomNavigator.router'
 import PostRegisterRouter from './router/postRegister/postRegister.router'
 import { theme } from './types/theme'
@@ -31,13 +32,14 @@ function App(): React.JSX.Element {
 		<ThemeProvider theme={theme}>
 			<SafeAreaView />
 			<StatusBar />
-			<Auth type={AuthType.SignUp} />
+			{/* <Auth type={AuthType.SignUp} /> */}
 			{/* <Boarding /> */}
 			{/* <Username /> */}
-			{/* <NavigationContainer> */}
-			{/* <PostRegisterRouter /> */}
-			{/* <Bottom /> */}
-			{/* </NavigationContainer> */}
+			<NavigationContainer>
+				<Router />
+				{/* <PostRegisterRouter /> */}
+				{/* <Bottom /> */}
+			</NavigationContainer>
 			{/* <Header /> */}
 			{/* <ComponentToast /> */}
 		</ThemeProvider>
