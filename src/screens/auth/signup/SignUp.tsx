@@ -26,6 +26,7 @@ import ComponentTitle from '@components/Title/Title'
 import ComponentToast, { TypeToast } from '@components/Toast/Toast'
 import { useNavigation } from '@react-navigation/native'
 import { useBreakpointGlobal } from '@store/breakpointGlobal'
+import { theme } from '@theme/theme'
 
 export const SignUp: React.FC = () => {
 	const [nameValue, setNameValue] = useState<string>('')
@@ -68,7 +69,12 @@ export const SignUp: React.FC = () => {
 
 	return (
 		<KeyboardAvoidingView style={{ flex: 1 }}>
-			<ScrollView style={{ flexGrow: 1 }}>
+			<ScrollView
+				style={{
+					flexGrow: 1,
+					backgroundColor: theme.colors.greyScale.offWhite,
+				}}
+			>
 				<TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
 					<ComponentContainer large={large}>
 						{displayMessage && (
