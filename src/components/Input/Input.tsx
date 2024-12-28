@@ -1,5 +1,6 @@
 import { Hide, Show } from '@icons/index'
 import { theme } from '@theme/theme'
+import type React from 'react'
 import { useState } from 'react'
 import { TouchableOpacity } from 'react-native'
 import { ContainerIcon, ContainerInput, Label, TextInput } from './style'
@@ -11,6 +12,7 @@ interface ITextInput {
 	password: boolean
 	onInputChange: (value: string) => void
 	lastInput?: boolean
+	value?: string
 }
 
 export const ComponentContainerInput: React.FC<ITextInput> = ({
@@ -20,6 +22,7 @@ export const ComponentContainerInput: React.FC<ITextInput> = ({
 	password,
 	onInputChange,
 	lastInput,
+	value,
 }) => {
 	const [showPassword, setShowPassword] = useState<boolean>(false)
 
@@ -68,7 +71,7 @@ export const ComponentContainerInput: React.FC<ITextInput> = ({
 						<TextInput
 							placeholder={placeholder}
 							$large={large}
-							value={inputValue}
+							value={value}
 							onChangeText={handleChange}
 						/>
 					</ContainerIcon>

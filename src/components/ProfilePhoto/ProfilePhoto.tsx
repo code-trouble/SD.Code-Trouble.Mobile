@@ -1,5 +1,6 @@
 import { Person } from '@icons/index'
 import { useBreakpointGlobal } from '@store/breakpointGlobal'
+import { useConfUserPreview } from '@store/confUserPreview'
 import { theme } from '@theme/theme'
 import { useEffect, useState } from 'react'
 import { TouchableOpacity } from 'react-native'
@@ -14,6 +15,7 @@ import { Container, ContainerImage, IconView, Image, Text } from './style'
 export const ProfilePhoto = () => {
 	const [selectedImage, setSelectedImage] = useState<string | null>(null)
 	const large = useBreakpointGlobal((state) => state.break)
+	const { user, updateUser } = useConfUserPreview()
 	const openImagePicker = () => {
 		const options: ImageLibraryOptions = {
 			mediaType: 'photo',
@@ -32,6 +34,7 @@ export const ProfilePhoto = () => {
 			console.log('Image picker error: ', response.errorMessage)
 		} else if (response.assets && response.assets.length > 0) {
 			const imageUri = response.assets[0]?.uri
+			updateUser({ ...user, photo: imageUri })
 			setSelectedImage(imageUri || null)
 		}
 	}
@@ -39,8 +42,8 @@ export const ProfilePhoto = () => {
 	return (
 		<Container>
 			<ContainerImage $large={large}>
-				{selectedImage ? (
-					<Image source={{ uri: selectedImage }} />
+				{user.photo ? (
+					<Image source={{ uri: user.photo }} />
 				) : (
 					<Person
 						color={theme.colors.greyScale.offWhite}
