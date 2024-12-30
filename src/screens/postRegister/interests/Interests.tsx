@@ -4,6 +4,7 @@ import Check from '@components/Check/Check'
 import ComponentContainer from '@components/Container/Container'
 import { useNavigation } from '@react-navigation/native'
 import { useBreakpointGlobal } from '@store/breakpointGlobal'
+import { usePreviewStore } from '@store/firstOpenPreview'
 import breakpoints from '@utils/dimensons'
 import type React from 'react'
 import { useEffect, useState } from 'react'
@@ -11,11 +12,16 @@ import { Container, ContainerBottom } from './styles'
 
 export const Interests: React.FC = () => {
 	const large = useBreakpointGlobal((state) => state.break)
+	const { setFirstOpen } = usePreviewStore()
 
 	const navigation = useNavigation()
 
 	const navigate = () => {
 		navigation.navigate('Detalhes do Perfil' as never)
+	}
+
+	const skip = () => {
+		setFirstOpen()
 	}
 
 	return (
@@ -54,7 +60,7 @@ export const Interests: React.FC = () => {
 
 			<ContainerBottom $large={large}>
 				<ComponentButton large={large} text="Próximo" onPress={navigate} />
-				<ComponentButtonSkip large={large} text="Pular" />
+				<ComponentButtonSkip large={large} text="Pular" onPress={skip} />
 			</ContainerBottom>
 		</ComponentContainer>
 	)

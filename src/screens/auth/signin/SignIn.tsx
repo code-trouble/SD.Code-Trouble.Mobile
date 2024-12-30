@@ -60,6 +60,7 @@ export const SignIn: React.FC = () => {
 	const validateInput = async () => {
 		if (emailValue === '' || passwordValue === '') {
 			setMessage('Campos inválidos')
+			setType('warning')
 			setDisplayMessage(true)
 		} else if (!emailValue.includes('@')) {
 			setMessage('Email inválido')
@@ -71,6 +72,7 @@ export const SignIn: React.FC = () => {
 		} else {
 			console.log(user)
 			if (user?.passwordValue === passwordValue) {
+				saveUser()
 				setMessage('Login efetuado')
 				setType('sucess')
 				setDisplayMessage(true)
@@ -87,6 +89,10 @@ export const SignIn: React.FC = () => {
 		return JSON.parse(user)
 	}
 
+	const saveUser = async () => {
+		await AsyncStorage.setItem('@email', emailValue)
+	}
+
 	const navigation = (value: string) => {
 		navigate.navigate(value as never)
 	}
@@ -94,6 +100,19 @@ export const SignIn: React.FC = () => {
 	setTimeout(() => {
 		setDisplayMessage(false)
 	}, 5000)
+
+	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+	useEffect(() => {
+		const searchUser = async () => {
+			const user = await AsyncStorage.getItem('@email')
+
+			if (user != null) {
+				updateLoged(true)
+			}
+		}
+
+		searchUser()
+	}, [])
 
 	return (
 		<KeyboardAvoidingView style={{ flex: 1 }}>

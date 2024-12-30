@@ -1,7 +1,9 @@
 import { ArrownDown, DownArrow } from '@icons/index'
 import { useBreakpointGlobal } from '@store/breakpointGlobal'
+import { useConfUserPreview } from '@store/confUserPreview'
 import { theme } from '@theme/theme'
 import type React from 'react'
+import { useEffect, useState } from 'react'
 import RNPickerSelect from 'react-native-picker-select'
 import { Container, Label } from './style'
 
@@ -11,6 +13,8 @@ interface ISelectPciker {
 
 export const SelectPicker: React.FC<ISelectPciker> = ({ mt }) => {
 	const large = useBreakpointGlobal((state) => state.break)
+	const [value, setValue] = useState<string>('')
+	const { user, updateUser } = useConfUserPreview()
 
 	return (
 		<Container>
@@ -20,7 +24,8 @@ export const SelectPicker: React.FC<ISelectPciker> = ({ mt }) => {
 
 			<RNPickerSelect
 				useNativeAndroidPickerStyle={false}
-				onValueChange={(value) => console.log(value)}
+				onValueChange={(value) => updateUser({ ...user, pronouns: value })}
+				value={user.pronouns}
 				items={[
 					{ label: 'Ela/Dela', value: 'ela/dela' },
 					{ label: 'Ele/Dele', value: 'ele/dele' },
