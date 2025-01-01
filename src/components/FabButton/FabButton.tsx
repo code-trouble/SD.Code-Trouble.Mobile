@@ -1,16 +1,10 @@
 import { Italic, Plus, Post } from '@icons/index'
+import { useBreakpointGlobal } from '@store/breakpointGlobal'
 import { theme } from '@theme/theme'
 import { useRef, useState } from 'react'
 import type React from 'react'
+import { Animated, Modal, TouchableWithoutFeedback, View } from 'react-native'
 import {
-	Animated,
-	Modal,
-	StyleSheet,
-	TouchableWithoutFeedback,
-	View,
-} from 'react-native'
-import {
-	Container,
 	ContainerFabButton,
 	ContainerPlusButton,
 	Horizontal,
@@ -20,6 +14,7 @@ import {
 export const FabButton: React.FC = () => {
 	const [open, setOpen] = useState<boolean>(false)
 	const animation = useRef(new Animated.Value(0)).current
+	const large = useBreakpointGlobal((state) => state.break)
 
 	const toggleMenu = () => {
 		const toValue = open ? 0 : 1
@@ -41,7 +36,7 @@ export const FabButton: React.FC = () => {
 			{
 				translateY: animation.interpolate({
 					inputRange: [0, 1],
-					outputRange: [0, -110],
+					outputRange: [0, large ? -110 : -98],
 				}),
 			},
 		],
@@ -55,7 +50,7 @@ export const FabButton: React.FC = () => {
 			{
 				translateY: animation.interpolate({
 					inputRange: [0, 1],
-					outputRange: [0, -175],
+					outputRange: [0, large ? -175 : -150],
 				}),
 			},
 		],
@@ -90,21 +85,38 @@ export const FabButton: React.FC = () => {
 					>
 						<TouchableWithoutFeedback>
 							<Horizontal>
-								<Text style={questionStyle}>Escrever Pergunta</Text>
+								<Text style={questionStyle} $large={large}>
+									Escrever Pergunta
+								</Text>
 								<ContainerFabButton
 									$backgroundColor="#fff"
 									style={questionStyle}
+									$large={large}
 								>
-									<Italic color="#000" width={20} height={20} />
+									<Italic
+										color="#000"
+										width={large ? 24 : 18}
+										height={large ? 24 : 18}
+									/>
 								</ContainerFabButton>
 							</Horizontal>
 						</TouchableWithoutFeedback>
 
 						<TouchableWithoutFeedback>
 							<Horizontal>
-								<Text style={postStyle}>Escrever Post</Text>
-								<ContainerFabButton $backgroundColor="#fff" style={postStyle}>
-									<Post color="#000" width={20} height={20} />
+								<Text style={postStyle} $large={large}>
+									Escrever Post
+								</Text>
+								<ContainerFabButton
+									$backgroundColor="#fff"
+									style={postStyle}
+									$large={large}
+								>
+									<Post
+										color="#000"
+										width={large ? 22 : 18}
+										height={large ? 22 : 18}
+									/>
 								</ContainerFabButton>
 							</Horizontal>
 						</TouchableWithoutFeedback>
@@ -117,6 +129,7 @@ export const FabButton: React.FC = () => {
 					$backgroundColor={theme.colors.primary}
 					$ml={125}
 					style={rotation}
+					$large={large}
 				>
 					<Plus color="#fff" width={25} height={25} />
 				</ContainerPlusButton>
