@@ -1,13 +1,24 @@
 import FabButton from '@components/FabButton/FabButton'
+import ListQuestion from '@components/ListQuestion/ListQuestion'
 import type React from 'react'
-import { Clock, Person } from '../../assets/icons'
-import { Container, Title } from './style'
+import { ScrollView } from 'react-native'
+import { Container } from './style'
 
 function Home(): React.JSX.Element {
 	return (
 		<Container>
-			<Title>Code Trouble</Title>
-			<Clock width={25} height={25} />
+			<ScrollView>
+				<ListQuestion />
+				<ListQuestion />
+				<ListQuestion />
+				<ListQuestion />
+				<ListQuestion />
+				<ListQuestion />
+				<ListQuestion />
+				<ListQuestion />
+				<ListQuestion />
+				<ListQuestion />
+			</ScrollView>
 			<FabButton />
 		</Container>
 	)
