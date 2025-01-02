@@ -3,14 +3,6 @@ import { theme } from '../../types/theme'
 
 export const Container = styled.View`
     flex: 1;
-    justify-content: center;
-    align-items: center;
+    padding-top: 70px;
     background-color: ${theme.colors.greyScale.offWhite};
-
-`
-
-export const Title = styled.Text<Text>`
-    color: ${theme.colors.primary};
-    font-size: 28px;
-    font-family: Hind-Bold;
 `
