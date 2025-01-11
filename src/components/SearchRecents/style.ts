@@ -8,6 +8,14 @@ export const Container = styled.View<{ $display: boolean }>`
     display: ${(props) => (props.$display ? 'none' : 'flex')};
 `
 
+export const Title = styled.Text<{ $large: boolean }>`
+    font-family: ${theme.fonts.montserrat.semiBold};
+    font-size: ${(props) => (props.$large ? 20 : 15)}px;
+    color: ${theme.colors.greyScale.eerieBlack};
+    margin-left: 10px;
+    margin-bottom: 7px;
+`
+
 export const ContainerItem = styled.View<{ $large: boolean }>`
     flex-direction: row;
     align-items: center;
