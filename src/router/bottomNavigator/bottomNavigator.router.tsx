@@ -3,6 +3,7 @@ import { Close, HomeIcon, LeftArrow, Person, Search } from '@icons/index'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { useNavigation } from '@react-navigation/native'
 import Blog from '@screens/Blog/Blog'
+import { Person as Persons } from '@screens/Persons/Person'
 import Posts from '@screens/Posts/Posts'
 import SearchPage from '@screens/Search/Search'
 import Tags from '@screens/Tags/Tags'
@@ -223,7 +224,7 @@ export const TopSearch: React.FC = () => {
 				<Tab.Screen name="Perguntas" component={SearchPage} />
 				<Tab.Screen name="Posts" component={Posts} />
 				<Tab.Screen name="Tags" component={Tags} />
-				<Tab.Screen name="Pessoas" component={Home} />
+				<Tab.Screen name="Pessoas" component={Persons} />
 			</Tab.Navigator>
 		</View>
 	)

@@ -6,7 +6,9 @@
  */
 
 import FabButton from '@components/FabButton/FabButton'
+import ListPersons from '@components/ListPersons/ListPersons'
 import { NavigationContainer } from '@react-navigation/native'
+import Person from '@screens/Persons/Person'
 import { useBreakpointGlobal } from '@store/breakpointGlobal'
 import breakpoints from '@utils/dimensons'
 import type React from 'react'
@@ -30,6 +32,7 @@ function App(): React.JSX.Element {
 			<NavigationContainer>
 				<Router />
 			</NavigationContainer>
+			{/* <ListPersons /> */}
 			{/* <FabButton /> */}
 		</ThemeProvider>
 	)
