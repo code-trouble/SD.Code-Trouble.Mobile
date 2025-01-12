@@ -2,7 +2,7 @@ import { Close, Search } from '@icons/index'
 import { useBreakpointGlobal } from '@store/breakpointGlobal'
 import { displaySearch } from '@store/displaySearch'
 import { theme } from '@theme/theme'
-import { Container, ContainerItem, Text } from './style'
+import { Container, ContainerItem, Text, Title } from './style'
 
 export const SearchRecents: React.FC = () => {
 	const large = useBreakpointGlobal((state) => state.break)
@@ -10,6 +10,7 @@ export const SearchRecents: React.FC = () => {
 
 	return (
 		<Container $display={display}>
+			<Title $large={large}>Pesquisas Recentes</Title>
 			<ContainerItem $large={large}>
 				<Search
 					color={theme.colors.greyScale.dimGray}

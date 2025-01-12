@@ -5,6 +5,7 @@ import { useNavigation } from '@react-navigation/native'
 import Blog from '@screens/Blog/Blog'
 import Posts from '@screens/Posts/Posts'
 import SearchPage from '@screens/Search/Search'
+import Tags from '@screens/Tags/Tags'
 import Home from '@screens/home'
 import { useBreakpointGlobal } from '@store/breakpointGlobal'
 import { displaySearch } from '@store/displaySearch'
@@ -221,7 +222,7 @@ export const TopSearch: React.FC = () => {
 			>
 				<Tab.Screen name="Perguntas" component={SearchPage} />
 				<Tab.Screen name="Posts" component={Posts} />
-				<Tab.Screen name="Tags" component={Home} />
+				<Tab.Screen name="Tags" component={Tags} />
 				<Tab.Screen name="Pessoas" component={Home} />
 			</Tab.Navigator>
 		</View>
