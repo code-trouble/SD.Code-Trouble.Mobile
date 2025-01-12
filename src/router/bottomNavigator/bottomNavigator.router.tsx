@@ -2,8 +2,11 @@ import Header from '@components/Header/Header'
 import { Close, HomeIcon, LeftArrow, Person, Search } from '@icons/index'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { useNavigation } from '@react-navigation/native'
+import Blog from '@screens/Blog/Blog'
+import SearchPage from '@screens/Search/Search'
 import Home from '@screens/home'
 import { useBreakpointGlobal } from '@store/breakpointGlobal'
+import { displaySearch } from '@store/displaySearch'
 import { theme } from '@theme/theme'
 import type React from 'react'
 import { useEffect, useState } from 'react'
@@ -74,7 +77,7 @@ export const TopHome: React.FC = () => {
 			})}
 		>
 			<Tab.Screen name="Perguntas" component={Home} />
-			<Tab.Screen name="Blog" component={Home} />
+			<Tab.Screen name="Blog" component={Blog} />
 		</Tab.Navigator>
 	)
 }
@@ -84,20 +87,30 @@ export const TopSearch: React.FC = () => {
 	const large = useBreakpointGlobal((state) => state.break)
 
 	const [value, setInput] = useState<string>('')
+	const { updateDisplay } = displaySearch()
+
+	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+	useEffect(() => {
+		if (value) {
+			updateDisplay(true)
+		} else {
+			updateDisplay(false)
+		}
+	}, [value])
 
 	return (
 		<View style={{ flex: 1 }}>
 			<View
 				style={{
 					position: 'absolute',
-					top: large ? 120 : 90,
+					top: large ? 60 : 60,
 					left: 0,
 					right: 0,
 					zIndex: 999,
-					borderTopWidth: 0,
 					borderRightWidth: 0,
 					borderLeftWidth: 0,
 					borderBottomWidth: 0.8,
+					borderTopWidth: 0.8,
 					borderColor: theme.colors.greyScale.dimGray,
 					flexDirection: 'row',
 					alignItems: 'center',
@@ -112,7 +125,7 @@ export const TopSearch: React.FC = () => {
 						width: '90%',
 					}}
 					placeholderTextColor={theme.colors.greyScale.dimGray}
-					onChangeText={(value) => setInput(value)}
+					onSubmitEditing={(value) => setInput(value.nativeEvent.text)}
 				/>
 				<View style={{ position: 'absolute', left: 16 }}>
 					<Search
@@ -126,100 +139,12 @@ export const TopSearch: React.FC = () => {
 				</View>
 			</View>
 
-			<View
-				style={{
-					position: 'absolute',
-					top: large ? 169 : 140,
-					left: 0,
-					right: 0,
-					zIndex: 999,
-					borderRightWidth: 0,
-					borderLeftWidth: 0,
-					borderBottomWidth: 0.8,
-					borderColor: theme.colors.greyScale.dimGray,
-					height: large ? 145 : 105,
-					display: value ? 'none' : 'flex',
-				}}
-			>
-				<Text
-					style={{
-						fontFamily: theme.fonts.montserrat.semiBold,
-						color: theme.colors.greyScale.eerieBlack,
-						fontSize: large ? 20 : 13,
-						marginTop: large ? 20 : 10,
-						marginLeft: 14,
-						marginBottom: large ? 20 : 10,
-					}}
-				>
-					Pesquisas Recentes
-				</Text>
-
-				<View
-					style={{
-						flexDirection: 'row',
-						alignItems: 'center',
-						marginLeft: 14,
-						marginRight: 14,
-						marginBottom: large ? 15 : 10,
-					}}
-				>
-					<Search
-						color={theme.colors.greyScale.dimGray}
-						width={large ? 20 : 10}
-						height={large ? 20 : 10}
-					/>
-					<Text
-						style={{
-							width: '87%',
-							marginLeft: 10,
-							fontFamily: theme.fonts.hind.regular,
-							fontSize: large ? 16 : 13,
-						}}
-					>
-						Figma
-					</Text>
-					<Close
-						color={theme.colors.greyScale.dimGray}
-						width={large ? 15 : 10}
-					/>
-				</View>
-				<View
-					style={{
-						flexDirection: 'row',
-						alignItems: 'center',
-						marginLeft: 14,
-						marginRight: 14,
-						marginBottom: 15,
-					}}
-				>
-					<Search
-						color={theme.colors.greyScale.dimGray}
-						width={large ? 20 : 10}
-						height={large ? 20 : 10}
-					/>
-					<Text
-						style={{
-							width: '87%',
-							marginLeft: 10,
-							fontFamily: theme.fonts.hind.regular,
-							fontSize: large ? 16 : 13,
-						}}
-					>
-						Figma
-					</Text>
-					<Close
-						color={theme.colors.greyScale.dimGray}
-						width={large ? 15 : 10}
-					/>
-				</View>
-			</View>
-
 			<Tab.Navigator
 				screenOptions={({ route }) => ({
 					header: () => {
 						return (
 							<Header
-								bottom={true}
+								bottom={false}
 								component={
 									<View
 										style={{
@@ -248,7 +173,7 @@ export const TopSearch: React.FC = () => {
 					},
 					tabBarStyle: {
 						position: 'absolute',
-						top: large ? 170 : 140,
+						top: large ? 108 : 108,
 						shadowColor: theme.colors.greyScale.offWhite,
 						backgroundColor: theme.colors.greyScale.offWhite,
 						borderTopWidth: 0,
@@ -293,7 +218,7 @@ export const TopSearch: React.FC = () => {
 					},
 				})}
 			>
-				<Tab.Screen name="Perguntas" component={Home} />
+				<Tab.Screen name="Perguntas" component={SearchPage} />
 				<Tab.Screen name="Posts" component={Home} />
 				<Tab.Screen name="Tags" component={Home} />
 				<Tab.Screen name="Pessoas" component={Home} />
