@@ -3,6 +3,7 @@ import { Close, HomeIcon, LeftArrow, Person, Search } from '@icons/index'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { useNavigation } from '@react-navigation/native'
 import Blog from '@screens/Blog/Blog'
+import PerfilQuestion from '@screens/PerfilQuestion/PerfilQuestion'
 import { Person as Persons } from '@screens/Persons/Person'
 import Posts from '@screens/Posts/Posts'
 import SearchPage from '@screens/Search/Search'
@@ -80,6 +81,65 @@ export const TopHome: React.FC = () => {
 			})}
 		>
 			<Tab.Screen name="Perguntas" component={Home} />
+			<Tab.Screen name="Blog" component={Blog} />
+		</Tab.Navigator>
+	)
+}
+
+export const RouterPerson: React.FC = () => {
+	const large = useBreakpointGlobal((state) => state.break)
+
+	return (
+		<Tab.Navigator
+			screenOptions={({ route }) => ({
+				header: () => {
+					return <Header bottom={false} />
+				},
+				tabBarStyle: {
+					position: 'absolute',
+					top: 145,
+					shadowColor: theme.colors.greyScale.offWhite,
+					backgroundColor: theme.colors.greyScale.offWhite,
+					borderTopWidth: 0,
+					borderWidth: 1,
+				},
+				tabBarShowLabel: false,
+				tabBarIcon: ({ focused }) => (
+					<View
+						style={{
+							flex: 1,
+							width: '100%',
+							borderWidth: 1,
+							borderTopColor: 'transparent',
+							borderLeftColor: 'transparent',
+							borderRightColor: 'transparent',
+							borderBottomColor: focused ? '#000' : 'transparent',
+						}}
+					>
+						<Text
+							style={{
+								textAlign: 'center',
+								marginTop: 5,
+								fontFamily: `${theme.fonts.montserrat.semiBold}`,
+								fontSize: large ? 16 : 14,
+								color: focused
+									? `${theme.colors.greyScale.eerieBlack}`
+									: `${theme.colors.greyScale.frenchGray}`,
+							}}
+						>
+							{titles[route.name]}
+						</Text>
+					</View>
+				),
+				tabBarIconStyle: {
+					width: large ? 210 : 165,
+					height: 44,
+					justifyContent: 'center',
+					alignItems: 'center',
+				},
+			})}
+		>
+			<Tab.Screen name="Perguntas" component={PerfilQuestion} />
 			<Tab.Screen name="Blog" component={Blog} />
 		</Tab.Navigator>
 	)
@@ -279,7 +339,7 @@ export const Bottom: React.FC = () => {
 			/>
 			<Tab.Screen
 				name="Person"
-				component={TopHome}
+				component={RouterPerson}
 				options={{
 					tabBarIcon({ focused, size }) {
 						return (
